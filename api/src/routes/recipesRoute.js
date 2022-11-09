@@ -12,31 +12,39 @@ route.get("/", async(req,res)=>{
     try {
         
         const {name} = req.query;
-        const {id} = req.body;
-
+        
         const allRecipes = await getRecipesApi();
 
-        if(name){
+        if(name){ //http://localhost:3001/recipes/?name=mila
 
             const recipeNmae = await getRecipeByName(name);
 
             return recipeNmae.length ? res.status(200).json(recipeNmae) : res.status(400).send("No hay receta con ese nombre");
-        }
-        if(id){
-
-            const recipeId = await getRecipeById(id);
-
-            return recipeId.length? res.status(200).json(recipeId) : res.status(400).send("No hay receta con ese ID");
-        }
-
+        };
+    
         res.status(200).json(allRecipes);
 
     } catch (error) {
         
-        res.status(500).send(error.message)
+        res.status(500).send(error.message);
     }
 });
 
+route.get("/:id", async (req,res)=> {
+
+    try {                       //http://localhost:3001/recipes/12
+        
+        const {id} = req.params;
+
+        const recipeId = await getRecipeById(id);
+
+        typeof recipeId == "string"? res.status(404).send(recipeId) : res.status(200).json(recipeId);
+
+    } catch (error) {
+      
+        res.status(500).send(error.message);
+    };
+});
 
 route.post("/", checkData, async (req,res) =>{
 
@@ -55,23 +63,6 @@ route.post("/", checkData, async (req,res) =>{
 });
 
 
-route.get("/s",async(req,res)=>{
-
-    const recipesDB = await Recipe.findAll({
-
-        include:{
-
-            model: Diet,
-            attributes: ["name"],
-            through: {
-                attributes: []
-            }
-        }
-    })
-
-
-    res.json(recipesDB);
-});
 module.exports = route;
 
 
@@ -90,5 +81,18 @@ Status code 208: Multi Estado
 Códigos de estado que indican un error
 Códigos de estado 403 / 404:  página que hemos intentado cargar no ha sido localizada
 Códigos de estado 500: un error interno del código de la página
+
+*/ 
+
+
+/* POST
+{
+  "name":"mila",
+  "summary":"plato argentino ..",
+  "healthScore":2,
+  "step":["empanado", "horno", "comer"],
+  "image":"image.jpg",
+  "diet":["vegan","primal","vegetarian"]
+}
 
 */ 

@@ -25,6 +25,9 @@ module.exports = (sequelize) => {
     step:{  // pasos o analyzedInstructions
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
+    image:{
+      type: DataTypes.STRING
+    },
     createInDB:{
       type: DataTypes.BOOLEAN,
       defaultValue: true,

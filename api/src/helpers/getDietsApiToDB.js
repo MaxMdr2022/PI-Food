@@ -1,6 +1,9 @@
 const axios = require("axios");
 const {Diet} = require("../db");
 
+require('dotenv').config();
+const { API_KEY }= process.env;
+
 const getDietsApiToDB = async () =>{
 
     try {
@@ -12,7 +15,7 @@ const getDietsApiToDB = async () =>{
         if(!dietsBD.length){
 
             const infoApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"); // API PIRATA
-            //const api = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=bcf02685b24e4b29a42f183b3ea38e72&addRecipeInformation=true&number=100");
+            // const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
             const dietsApi = infoApi.data.results.map((e) =>{
                 
