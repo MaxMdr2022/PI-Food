@@ -58,7 +58,22 @@ const getRecipesApi = async () =>{
         }
     });
 
-    const allRecipes = [...recipeBD, ...recipesApi];
+    const recipeBD2 = recipeBD.map( e => {
+
+        return {
+            id: e.id,
+            name: e.name,
+            summary: e.summary,
+            healthScore: e.healthScore,
+            step: e.step,
+            image: e.image,
+            createInDB: e.createInDB,
+            diets: e.diets.map( e=> e.name)
+        }
+    });
+
+
+    const allRecipes = [...recipeBD2, ...recipesApi];
 
     return allRecipes;
 };
