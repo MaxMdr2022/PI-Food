@@ -31,7 +31,7 @@ const checkData = (req, res, next)=> {
 
     if(!step) return res.status(400).send("Debe ingresar los pasos");
 
-    if(!image) return res.status(400).send("Debe ingresar una imagen");
+    //if(!image) return res.status(400).send("Debe ingresar una imagen");
 
     if(!diet) return res.status(400).send("falta seleccionar dieta");
 

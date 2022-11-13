@@ -20,9 +20,9 @@ const getDietsApi = async ()=>{
 
     let arrDiets = [...filterDiets];
 
-    let mapDiets = arrDiets.map(e => {return {name: e}})
+    // let mapDiets = arrDiets.map(e => {return {name: e}})
 
-    return mapDiets;
+    return arrDiets;
 };
 
 const getRecipesApi = async () =>{
@@ -71,7 +71,7 @@ const getRecipesApi = async () =>{
             diets: e.diets.map( e=> e.name)
         }
     });
-
+    
 
     const allRecipes = [...recipeBD2, ...recipesApi];
 
@@ -109,8 +109,23 @@ const getRecipeById = async (id) => {
                     }
                 }
             });
+            // console.log("rrrrrrrrrrrrrrr", recipeBD)
 
-            return recipeBD;
+            const recipeBD2 = recipeBD.map( e => {
+
+                return {
+                    id: e.id,
+                    name: e.name,
+                    summary: e.summary,
+                    healthScore: e.healthScore,
+                    step: e.step,
+                    image: e.image,
+                    createInDB: e.createInDB,
+                    diets: e.diets.map( e=> e.name)
+                }
+            });
+
+            return recipeBD2;
         };
 
         return "No hay recipe en BD con ese id";

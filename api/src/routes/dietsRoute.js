@@ -13,7 +13,7 @@ route.get("/",async (req,res)=>{
     
         const dietsAPI = await getDietsApi();
 
-        res.status(200).send("Get Diets");
+        res.status(200).send(dietsAPI);
 
     } catch (error) {
         
