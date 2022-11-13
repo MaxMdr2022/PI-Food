@@ -4,6 +4,8 @@ import { getAllRecipes } from "../../redux/action";
 import Recipes from "../Recipes/Recipes";
 import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
+import { getRecipeById, getDiets, filterByDiets } from "../../redux/action";
+import Recipe from "../Recipe/Recipe";
 
 const Home = ()=>{
 
@@ -11,6 +13,9 @@ const Home = ()=>{
     const dispatch = useDispatch();
     const recipe = useSelector(state => state.recipes);  // esto es lo mismo que hacer el mapStateToProps (vedio2 35:30)
     const error = useSelector(state => state.error);
+    const recipeId = useSelector(s => s.recipe);
+    const diets = useSelector(s => s.diets);
+
 
     // const [err, setErr] = useState("")
     //---paginacion-----------------
@@ -35,15 +40,56 @@ const Home = ()=>{
     useEffect(()=>{
 
         dispatch(getAllRecipes());
-    
+        dispatch(getDiets())
+        
+  
     }, [dispatch]);
 
-    console.log(error)
+    
+
+        
+    
+
+    function handleBotonId (e) {
+
+        // console.log("eeeeeeeeeeeeeeee", e)
+        dispatch(getRecipeById(e))
+    };
+
+    function handleFilterDiets (e){
+
+        // console.log("eeeeeeeeeeee", e.target.value);
+        dispatch(filterByDiets(e.target.value));
+    }
+
+    
+
     return (
         <div>
 
             <div>
                 <Searchbar/>
+            </div>
+
+            <div>
+                
+                {recipeId.length > 0 ? null : 
+
+                    <select onChange={(e)=>handleFilterDiets(e)}>
+
+                    <option value="Todo"  >Todo</option>
+
+                        {diets.map(e =>
+
+                            <option value={e} >{e}</option>
+                        )}
+
+                    </select>
+
+
+                }
+                
+
             </div>
 
             { !mostrarRecipes.length > 0 ? null : (
@@ -56,11 +102,11 @@ const Home = ()=>{
             <div>
                 {error.length > 0 ? <p>Recipe not found</p> : 
 
-                    mostrarRecipes.length > 0 ? mostrarRecipes.map(e=>(
+                    mostrarRecipes.length > 0 || recipeId.length > 0 ? mostrarRecipes.map(e=>(
                         <div>
 
                             <Recipes key={e.id} recipe={e}  />
-                            <button >detalle</button>
+                            <button onClick={()=> handleBotonId(e.id)}>detalle</button>
                             <hr/>
 
                         </div>
@@ -68,6 +114,12 @@ const Home = ()=>{
 
                     )) : <h1>cargando</h1>
                 }
+
+            </div>
+
+            <div>
+
+                { recipeId.length >0 ? recipeId.map(e => <Recipe key={e.id} recipe={e}/>) : null}
 
             </div>
 

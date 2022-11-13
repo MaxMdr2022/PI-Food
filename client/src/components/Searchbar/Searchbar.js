@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getRecipeByName, getAllRecipes } from "../../redux/action";
+import { useDispatch } from "react-redux";
+import { getRecipeByName, getAllRecipes, getDiets } from "../../redux/action";
 
 const Searchbar = ()=> {
 
@@ -12,7 +12,7 @@ const Searchbar = ()=> {
 
     const handleInputName = (e)=>{
 
-        // e.preventDefault();
+        e.preventDefault();
         setName(e.target.value);
     };
 
@@ -20,20 +20,35 @@ const Searchbar = ()=> {
 
         
         if(name.length > 0){
-            // e.preventDefault();
+            e.preventDefault();
             
             dispatch(getRecipeByName(name));
-            setName("");
+            // setName("");
+            // dispatch()
+            dispatch(getDiets())
        
         }else{
             dispatch(getAllRecipes());
+            dispatch(getDiets())
+            
 
         };  
         
     };
 
+    const handleHome = ()=>{
+        
+        dispatch(getAllRecipes());
+        // dispatch(filterByDiets("Todos"));
+        // dispatch(getDiets());
+
+    };
+
+   
+
     return (
         <div>
+            <button onClick={()=> handleHome()}>Home</button>
 
             <input type="text" placeholder="buscar.." onChange={(e)=> handleInputName(e)} />
 
