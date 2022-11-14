@@ -13,6 +13,10 @@ export const GET_DIETS = "GET_DIETS";
 
 export const FILTER_BY_DIETS = "FILTER_BY_DIETS";
 
+export const ORDER_BY_HEALTH_SCORE = "ORDER_BY_HEALTH_SCORE";
+
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+
 //-----------------------------------------------------------
 
 export const getAllRecipes = () =>{
@@ -125,5 +129,21 @@ export const filterByDiets = (d)=>{
 
         type: FILTER_BY_DIETS,
         payload: d
+    }
+};
+
+export const orderByHealthScore = (h) =>{
+
+    return {
+        type: ORDER_BY_HEALTH_SCORE,
+        payload: h
+    }
+};
+
+export const orderByName = (n) =>{
+
+    return{
+        type: ORDER_BY_NAME,
+        payload: n
     }
 };

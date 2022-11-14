@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS } from "./action";
+import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS, ORDER_BY_HEALTH_SCORE, ORDER_BY_NAME } from "./action";
 
 const initialState = {
 
@@ -105,15 +105,91 @@ export default function rootReducer  (state= initialState, action){
                 }
                 
                 
-                return{
+            return{
     
-                    ...state,
-                    recipes: r,
-                    error: r2,
-                    recipeByName: action.payload,
-                    // diets: []
+                ...state,
+                recipes: r,
+                error: r2,
+                recipeByName: action.payload,
+                // diets: []
     
-            }        
+            }
+        case ORDER_BY_HEALTH_SCORE:
+            
+            const value = action.payload;
+            const recip = state.recipes;
+
+            let f =[];
+            let e = "";
+            //                            a  b
+            if(recip.length > 0){ // [2, 12, 1, 10]  | si retorna -1 [a, b], si retorna 1 [b, a]. 0 no hay cambios. 
+
+                f = value === "high health score" ? recip.sort(function(a,b){
+
+                    if(a.healthScore > b.healthScore) return -1;
+
+                    if(b.healthScore > a.healthScore) return 1;
+
+                    return 0;
+                }) :
+                recip.sort(function (a, b){
+                    
+                    if(a.healthScore > b.healthScore) return 1;
+
+                    if(b.healthScore > a.healthScore) return -1;
+
+                    return 0;
+                    
+                });
+
+            }else{
+
+                e = "error3";
+            };
+            
+
+            return{
+
+                ...state,
+                recipes: f,
+                error: e
+
+            }
+        case ORDER_BY_NAME:
+
+            const rec = state.recipes;
+            const n = action.payload;
+
+            let arr= [];
+            let er = "";
+
+            if(rec.length >0){
+
+                arr = n === "A-Z" ? rec.sort(function(a,b){
+
+                    if(a.name > b.name) return 1;
+                    if(b.name > a.name) return -1;
+                    return 0;
+                
+                }) : rec.sort(function (a,b){
+
+                    if(a.name > b.name) return -1;
+                    if(b.name > a.name) return 1;
+
+                    return 0;
+                });
+            
+            }else{
+
+                er = "error4";
+            };
+
+            return{
+
+                ...state,
+                recipes: arr,
+                error: er
+            }
         default:
             return{
                 ...state

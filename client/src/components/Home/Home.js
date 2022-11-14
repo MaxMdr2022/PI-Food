@@ -4,7 +4,7 @@ import { getAllRecipes } from "../../redux/action";
 import Recipes from "../Recipes/Recipes";
 import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
-import { getRecipeById, getDiets, filterByDiets } from "../../redux/action";
+import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
 import Recipe from "../Recipe/Recipe";
 
 const Home = ()=>{
@@ -21,6 +21,7 @@ const Home = ()=>{
     //---paginacion-----------------
 
     const [pag, setPag] = useState(1);
+    const [order, setOrder] = useState("");
 
     const cantRecipesXpag = 9;
 
@@ -60,9 +61,24 @@ const Home = ()=>{
 
         // console.log("eeeeeeeeeeee", e.target.value);
         dispatch(filterByDiets(e.target.value));
-    }
+    };
 
-    
+    function handleOrder (e){
+
+        if(e.target.value === "high health score" || e.target.value === "low health score"){
+
+            dispatch(orderByHealthScore(e.target.value));
+            setPag(1);
+            setOrder(`ordenado ${e.target.value}`);
+
+        }else{
+
+            dispatch(orderByName(e.target.value));
+            setPag(1);
+            setOrder(`ordenado ${e.target.value}`);
+        }
+        
+    };
 
     return (
         <div>
@@ -85,10 +101,21 @@ const Home = ()=>{
                         )}
 
                     </select>
+                }
+            </div>
 
+            <div>
+                {recipeId.length > 0 ? null : 
+
+                    <select onChange={(e)=> handleOrder(e)} >
+                        <option>Order</option>
+                        <option value={"high health score"}>high health score</option>
+                        <option value={"low health score"}>low health score</option>
+                        <option value={"A-Z"}>A-Z</option>
+                        <option value={"Z-A"}>Z-A</option>
+                    </select>
 
                 }
-                
 
             </div>
 
