@@ -9,6 +9,7 @@ const Searchbar = ()=> {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
+    const [order, setOrder] = useState("");
 
     const handleInputName = (e)=>{
 
@@ -26,11 +27,12 @@ const Searchbar = ()=> {
             // setName("");
             // dispatch()
             dispatch(getDiets())
+            setOrder(`ordenado `);
        
         }else{
             dispatch(getAllRecipes());
             dispatch(getDiets())
-            
+            setOrder(`ordenado `);
 
         };  
         

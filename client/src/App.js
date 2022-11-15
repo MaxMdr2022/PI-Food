@@ -4,6 +4,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";  // el Switch sir
 import Inicio from "../src/components/Inicio/Inicio";
 import Home from "./components/Home/Home";
 import Form from "./components/Form/Form";
+import Navbar from './components/NavBar/Navbar';
+import Recipe from "./components/Recipe/Recipe";
 
 function App() {
   return (
@@ -12,11 +14,14 @@ function App() {
     
       <div className="App">
 
+        <Navbar/>
+        
         <Switch>
-
+          
           <Route exact path={"/"} component={Inicio} />
           <Route path={"/home"} component={Home}/>
           <Route path={"/post"} component={Form}/>
+          <Route path={"/detail"} component={Recipe} />
 
         </Switch>
         

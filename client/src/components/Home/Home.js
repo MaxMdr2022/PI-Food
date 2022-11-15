@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllRecipes } from "../../redux/action";
 import Recipes from "../Recipes/Recipes";
 import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
-import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
+import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName,restart } from "../../redux/action";
 import Recipe from "../Recipe/Recipe";
 
 const Home = ()=>{
@@ -41,7 +42,12 @@ const Home = ()=>{
     useEffect(()=>{
 
         dispatch(getAllRecipes());
-        dispatch(getDiets())
+        dispatch(getDiets());
+
+        return(()=>{
+
+            dispatch(restart());
+        })
         
   
     }, [dispatch]);
@@ -89,7 +95,7 @@ const Home = ()=>{
 
             <div>
                 
-                {recipeId.length > 0 ? null : 
+               {/*} {recipeId.length > 0 ? null : */}
 
                     <select onChange={(e)=>handleFilterDiets(e)}>
 
@@ -101,11 +107,11 @@ const Home = ()=>{
                         )}
 
                     </select>
-                }
+              {/*  }*/}
             </div>
 
             <div>
-                {recipeId.length > 0 ? null : 
+              {/*  {recipeId.length > 0 ? null : */}
 
                     <select onChange={(e)=> handleOrder(e)} >
                         <option>Order</option>
@@ -115,7 +121,7 @@ const Home = ()=>{
                         <option value={"Z-A"}>Z-A</option>
                     </select>
 
-                }
+             { /*  }*/}
 
             </div>
 
@@ -133,7 +139,11 @@ const Home = ()=>{
                         <div>
 
                             <Recipes key={e.id} recipe={e}  />
-                            <button onClick={()=> handleBotonId(e.id)}>detalle</button>
+                            <Link to={"/detail"}>
+
+                                <button onClick={()=> handleBotonId(e.id)}>detalle</button>
+                            </Link>
+                            
                             <hr/>
 
                         </div>
@@ -143,13 +153,14 @@ const Home = ()=>{
                 }
 
             </div>
-
+            
+            {/*
             <div>
 
                 { recipeId.length >0 ? recipeId.map(e => <Recipe key={e.id} recipe={e}/>) : null}
 
             </div>
-
+            */}
         </div>
         
     )
@@ -166,4 +177,13 @@ export default Home;
                     <Recipes key={e.id} recipe={e}  />
 
                 )) : <h1>cargando</h1>}
+*/
+
+
+
+/*
+
+<Recipes key={e.id} recipe={e}  />
+                            <button onClick={()=> handleBotonId(e.id)}>detalle</button>
+                            <hr/>
 */

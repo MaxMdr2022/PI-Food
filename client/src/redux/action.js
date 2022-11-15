@@ -17,6 +17,10 @@ export const ORDER_BY_HEALTH_SCORE = "ORDER_BY_HEALTH_SCORE";
 
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 
+export const POST_RECIPE = "POST_RECIPE";
+
+export const RESTART = "RESTART";
+
 //-----------------------------------------------------------
 
 export const getAllRecipes = () =>{
@@ -147,3 +151,37 @@ export const orderByName = (n) =>{
         payload: n
     }
 };
+
+export const postRecipe = (data) =>{
+
+    console.log("dataaaaaaa",data)
+    return async function (dispatch){
+
+        try {
+            
+            const post = await axios.post("http://localhost:3001/recipes", data);
+
+            dispatch({
+
+                type: POST_RECIPE,
+                payload: post.data
+            });
+
+        } catch (error) {
+            
+            dispatch({
+
+                type: ERROR,
+                payload: error.message
+            });
+        };
+    };
+};
+
+export const restart = ()=>{
+
+    return {
+        
+        type: RESTART
+    }
+}

@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS, ORDER_BY_HEALTH_SCORE, ORDER_BY_NAME } from "./action";
+import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS, ORDER_BY_HEALTH_SCORE, ORDER_BY_NAME, POST_RECIPE, RESTART } from "./action";
 
 const initialState = {
 
@@ -15,8 +15,8 @@ const initialState = {
     recipeByName: [],
 
     recipeDiets: [],
-    // d:[]
     
+    post: []
 };
 
 
@@ -35,13 +35,14 @@ export default function rootReducer  (state= initialState, action){
                 error: "",
                 recipeByName:[],
                 recipeDiets:[],
-                recipe: []
+                // recipe: []
             }
         case ERROR:
             return{
 
                 ...state,
-                error: action.payload
+                error: action.payload,
+                recipes:[]
             }    
         
         case GET_RECIPE_BY_ID:
@@ -50,7 +51,7 @@ export default function rootReducer  (state= initialState, action){
                 ...state,
                 recipe: action.payload,
                 error: "",
-                recipes: []
+                // recipes: []
             }
         case GET_DIETS:
             return{
@@ -190,6 +191,23 @@ export default function rootReducer  (state= initialState, action){
                 recipes: arr,
                 error: er
             }
+
+        case POST_RECIPE:
+            
+            return{
+
+                ...state,
+                post: action.payload,
+                // recipes: [...state.recipes, action.payload ]
+            }
+        case RESTART:
+            return{
+
+                ...state,
+                recipes: [],
+                recipe:[],
+                error: ""
+            }    
         default:
             return{
                 ...state
