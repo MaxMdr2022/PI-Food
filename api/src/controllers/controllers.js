@@ -161,7 +161,7 @@ const getRecipeById = async (id) => {
 
 const createRecipeDB = async (req) =>{
 
-    const {name, summary, healthScore, step, image, diet} = req;
+    const {name, summary, healthScore, step, image, diets} = req;
 
     const recipeDB = await Recipe.create({
 
@@ -174,10 +174,41 @@ const createRecipeDB = async (req) =>{
 
     const dietBD = await Diet.findAll({
 
-        where: { name: diet }
+        where: { name: diets }
     });
 
     recipeDB.addDiets(dietBD);
+
+    const recipe = await Recipe.findAll({
+
+        where:{name: name},
+        include:{
+
+            model: Diet,
+            attributes: ["name"],
+            through: {
+                attributes: []
+            }
+        }
+    });
+    // console.log("rrrrrrrrrrrrrrr", recipeBD)
+
+    const recipe2 = await recipe.map( e => {
+
+        return {
+            id: e.id,
+            name: e.name,
+            summary: e.summary,
+            healthScore: e.healthScore,
+            step: e.step,
+            image: e.image,
+            createInDB: e.createInDB,
+            diets: e.diets.map( e=> e.name)
+        }
+    });
+
+    return recipe2;
+
 };
 
 module.exports ={

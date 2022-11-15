@@ -46,14 +46,15 @@ route.get("/:id", async (req,res)=> {
     };
 });
 
-route.post("/", checkData, async (req,res) =>{
+route.post("/",  async (req,res) =>{
 
+    console.log(req.body)
 
     try {
 
-        await createRecipeDB(req.body);
+        const recipe = await createRecipeDB(req.body);
 
-        res.status(201).send("receta creada");
+        res.status(201).json(recipe);
 
 
     } catch (error) {
