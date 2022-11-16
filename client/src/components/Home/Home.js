@@ -86,6 +86,8 @@ const Home = ()=>{
         
     };
 
+    
+
     return (
         <div>
 
@@ -113,8 +115,8 @@ const Home = ()=>{
             <div>
               {/*  {recipeId.length > 0 ? null : */}
 
-                    <select onChange={(e)=> handleOrder(e)} >
-                        <option>Order</option>
+                    <select  onChange={(e)=> handleOrder(e)} >
+                        <option>---Order---</option>
                         <option value={"high health score"}>high health score</option>
                         <option value={"low health score"}>low health score</option>
                         <option value={"A-Z"}>A-Z</option>
@@ -122,7 +124,9 @@ const Home = ()=>{
                     </select>
 
              { /*  }*/}
-
+             {/* <button onClick={handleBtn}>reiniciar</button> */}
+            
+             
             </div>
 
             { !mostrarRecipes.length > 0 ? null : (

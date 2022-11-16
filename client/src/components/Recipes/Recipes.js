@@ -10,7 +10,13 @@ const Recipes =({recipe})=> {
 
             <p>{recipe.name}</p>
             <p>{recipe.healthScore}</p>
-            <p>{recipe.diets} </p>
+            
+            { recipe.diets.length > 0 ? recipe.diets.map(e => 
+
+                <p>{e}</p>
+
+            ): null
+            }
 
             
 

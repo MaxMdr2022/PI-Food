@@ -53,11 +53,26 @@ const Form = () =>{
 
         const err = {};
 
-        if(!state.name.length) err.name = "Debe ingresar un nombre";
-        if(!state.healthScore.length) err.healthScore = "Debe ingresar un valor de nivel de salud";
+        if(!state.name.length){ 
+            err.name = "Debe ingresar un nombre";
+
+        }else if(state.name == Number(state.name)){
+            err.name = "El nombre no puede ser numerico";
+        };
+
+        if(!state.healthScore.length){
+            err.healthScore = "Debe ingresar un valor de nivel de salud";
+
+        }else if(state.healthScore != Number(state.healthScore) ){
+            err.healthScore = "El nivel de salud debe ser numerico";
+
+        }else if(state.healthScore > 100 || state.healthScore < 0){
+            err.healthScore = "Solo valores entre 0-100";
+        };
+
         if(!state.summary.length) err.summary = "Debe agregar un summay";
         if(!state.step.length) err.step = "Debe agregar los pasos";
-        if(!state.diets.length > 0) err.diets = "Debe seleccionar al menos un tipo de dieta"
+        if(!state.diets.length > 0) err.diets = "Debe seleccionar al menos un tipo de dieta";
 
         return err;
     };
@@ -104,7 +119,7 @@ const Form = () =>{
 
         console.log("cheeeeeeeeeeeeeeee",checkbox.checked)
 
-        
+       
 
         if(checkbox.checked === false){
 
@@ -140,26 +155,65 @@ const Form = () =>{
        
     };
 
- console.log("dd", input.diets);
+    // console.log("dd", input.diets);
 
+    const [stepAdd, setStepAdd] = useState([])
+
+    const handleAdd = (e) =>{
+        e.preventDefault();
+        const abc = [...stepAdd, []]
+        setStepAdd(abc)
+    };
+
+    const handleCambio = (e, i)=>{
+
+        const data = [...stepAdd]
+
+        data[i] = e.target.value
+
+        setStepAdd(data)
+        
+        // input.step.push(data[i])
+        setInput({
+
+            ...input,
+            step:[...input.step, [e.target.value] ]
+        })
+    }
+
+    const handleDelete = (e,i) =>{
+        e.preventDefault();
+        const deletStep = [...stepAdd]
+        deletStep.splice(i,1)
+        setStepAdd(deletStep)
+
+        const deletStepInput = [...input.step]
+        deletStepInput.splice(i, 1)
+        setInput({
+
+            ...input,
+            step:[...input.step, deletStepInput]
+        })
+    }
+    
 
 
 
  // mejorar las validaciones healthscore no puede ser string, y lo q pide el readme en validaciones, despues modular algunos componentes, ver lo del boton en el landingpage y creo q ya quedaria
    
- // en el back ver el middlewaate etc...
+ // en el back ver el middlewaate etc...   onSubmit={(e) => handleSubmit(e)}
     return(
         <div>
 
             <h3>Crear receta</h3>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form >
 
                 <div>
 
                     <label>Nombre</label>
                     <input type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
-                    
+                    {error.name === "El nombre no puede ser numerico" ? <span>El nombre no puede ser numerico</span> : null}
 
                 </div>
 
@@ -174,7 +228,8 @@ const Form = () =>{
 
                     <label>healthScore</label>
                     <input type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
-                  
+                    {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
+                    {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
                 </div>
 
                 <div>
@@ -188,7 +243,15 @@ const Form = () =>{
 
                     <label>Step</label>
                     <input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={input.step} onChange={(e)=> handleStep(e)} />
+                    <span><button hidden={input.step.length > 0 ? false : true} onClick={(e)=>handleAdd(e)}>Add Step</button></span>
                     
+                    {input.step.length > 0 ? stepAdd.map( (data, i) => 
+                        <div>
+                            <input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={data} onChange={ e =>handleCambio(e,i)}  />  
+                            <button onClick={(e)=> handleDelete(e,i)}>x</button>
+                        </div>
+
+                    ): null }
                 </div>
 
                 <div>
@@ -202,7 +265,7 @@ const Form = () =>{
                     <p>{error.diets && error.diets}</p>
                 </div>
 
-                <button type="submit" hidden = {!Object.keys(error).length ? false : true} >Crear</button>
+                <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
 
             </form>
         </div>
@@ -211,3 +274,6 @@ const Form = () =>{
 
 
 export default Form;
+
+
+//<input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={input.step} onChange={(e)=> handleStep(e)} /> : null  

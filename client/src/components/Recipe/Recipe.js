@@ -21,9 +21,27 @@ const Recipe = () => {
                 <p>{recipe.name}</p>
                 <p>{recipe.dishTypes}</p>
                 <p>{recipe.healthScore}</p>
-                <p>{recipe.diets} </p>
+
+                { recipe.diets.length > 0 ? recipe.diets.map(e => 
+
+                    <p>{e}</p>
+
+                ): null
+
+                }
+                
                 <p>{recipe.summary}</p>
-                <p>{recipe.step}</p>
+
+                { recipe.step.length > 0 ? recipe.step.map((e, i) =>
+                
+                    <div>
+                        <p>Step {i +1}:</p>
+                        <p>{e}</p>
+                    </div>
+                
+                ) : null
+                }
+
             </div>
             ) }
 

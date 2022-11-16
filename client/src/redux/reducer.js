@@ -168,14 +168,14 @@ export default function rootReducer  (state= initialState, action){
 
                 arr = n === "A-Z" ? rec.sort(function(a,b){
 
-                    if(a.name > b.name) return 1;
-                    if(b.name > a.name) return -1;
+                    if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                    if(b.name.toLowerCase() > a.name.toLowerCase()) return -1;
                     return 0;
                 
                 }) : rec.sort(function (a,b){
 
-                    if(a.name > b.name) return -1;
-                    if(b.name > a.name) return 1;
+                    if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                    if(b.name.toLowerCase() > a.name.toLowerCase()) return 1;
 
                     return 0;
                 });
