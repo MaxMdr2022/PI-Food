@@ -13,7 +13,7 @@ const Recipes =({recipe})=> {
             
             { recipe.diets.length > 0 ? recipe.diets.map(e => 
 
-                <p>{e}</p>
+                <p key={e}>{e}</p>
 
             ): null
             }
@@ -27,7 +27,3 @@ const Recipes =({recipe})=> {
 export default Recipes;
 
 
-//name={e.name} image={e.image} diets={e.diets} healthScore={e.healthScore}
-
-
-//

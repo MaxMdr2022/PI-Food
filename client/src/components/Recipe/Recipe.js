@@ -1,22 +1,26 @@
 import React from "react";
-// import { getAllRecipes } from "../../redux/action";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import Navbar from "../NavBar/Navbar";
+
+
 
 const Recipe = () => {
 
-    // const dispatch = useDispatch();
+ 
     const recipeId = useSelector(s => s.recipe);
 
-    // function handleHome (){
-
-    //     dispatch(getAllRecipes());
-    // };
 
     return (
         <div>
-            { recipeId.map(recipe => 
+            <div >
+                <Navbar/>
 
-            <div>
+            </div>
+
+            {recipeId.length > 0 ? recipeId.map(recipe => 
+
+            <div key={recipe.id}>
+
                 <img height="200" alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
                 <p>{recipe.name}</p>
                 <p>{recipe.dishTypes}</p>
@@ -24,29 +28,29 @@ const Recipe = () => {
 
                 { recipe.diets.length > 0 ? recipe.diets.map(e => 
 
-                    <p>{e}</p>
+                    <p key={e}>{e}</p>
 
                 ): null
 
                 }
                 
-                <p>{recipe.summary}</p>
+                <p >{recipe.summary.replace(/<[^>]*>?/g, '')}</p>
 
                 { recipe.step.length > 0 ? recipe.step.map((e, i) =>
                 
-                    <div>
+                    <div key={i}>
+
                         <p>Step {i +1}:</p>
                         <p>{e}</p>
+
                     </div>
                 
                 ) : null
                 }
 
             </div>
-            ) }
+            ) : <h1>cargando..</h1>}
 
-
-            {/* <button onClick={()=> handleHome()}>Home</button> */}
         </div>
     )
 };

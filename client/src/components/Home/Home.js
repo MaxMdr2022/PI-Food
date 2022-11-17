@@ -5,8 +5,9 @@ import { getAllRecipes } from "../../redux/action";
 import Recipes from "../Recipes/Recipes";
 import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
-import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName,restart } from "../../redux/action";
-import Recipe from "../Recipe/Recipe";
+import Navbar from "../NavBar/Navbar"
+import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
+
 
 const Home = ()=>{
 
@@ -18,7 +19,7 @@ const Home = ()=>{
     const diets = useSelector(s => s.diets);
 
 
-    // const [err, setErr] = useState("")
+   
     //---paginacion-----------------
 
     const [pag, setPag] = useState(1);
@@ -35,7 +36,7 @@ const Home = ()=>{
     function pagination(numPag){
 
         setPag(numPag);
-    }
+    };
 
     //-----------------------------
 
@@ -44,21 +45,10 @@ const Home = ()=>{
         dispatch(getAllRecipes());
         dispatch(getDiets());
 
-        return(()=>{
-
-            dispatch(restart());
-        })
-        
-  
     }, [dispatch]);
 
-    
-
-        
-    
 
     function handleBotonId (e) {
-
         // console.log("eeeeeeeeeeeeeeee", e)
         dispatch(getRecipeById(e))
     };
@@ -92,60 +82,63 @@ const Home = ()=>{
         <div>
 
             <div>
+                <Navbar/>
+            </div>
+
+            <div>
                 <Searchbar/>
             </div>
 
             <div>
                 
-               {/*} {recipeId.length > 0 ? null : */}
 
-                    <select onChange={(e)=>handleFilterDiets(e)}>
+                <select onChange={(e)=>handleFilterDiets(e)}>
 
-                    <option value="Todo"  >Todo</option>
+                <option value="Todo"  >Todo</option>
 
-                        {diets.map(e =>
+                    {diets.map((e) =>
 
-                            <option value={e} >{e}</option>
-                        )}
+                        <option key={e} value={e} >{e}</option>
+                    )}
 
-                    </select>
-              {/*  }*/}
+                </select>
+
             </div>
 
             <div>
-              {/*  {recipeId.length > 0 ? null : */}
 
-                    <select  onChange={(e)=> handleOrder(e)} >
-                        <option>---Order---</option>
-                        <option value={"high health score"}>high health score</option>
-                        <option value={"low health score"}>low health score</option>
-                        <option value={"A-Z"}>A-Z</option>
-                        <option value={"Z-A"}>Z-A</option>
-                    </select>
+                <select  onChange={(e)=> handleOrder(e)} >
+                    <option>---Order---</option>
+                    <option value={"high health score"}>high health score</option>
+                    <option value={"low health score"}>low health score</option>
+                    <option value={"A-Z"}>A-Z</option>
+                    <option value={"Z-A"}>Z-A</option>
+                </select>
 
-             { /*  }*/}
-             {/* <button onClick={handleBtn}>reiniciar</button> */}
             
              
             </div>
 
             { !mostrarRecipes.length > 0 ? null : (
                 
-                <div>
-                    <Pagination cantidadReciXPag={cantRecipesXpag} recipes={recipe.length} funPagination={pagination} pag={pag} />
-                </div>
+               
+                <Pagination  cantidadReciXPag={cantRecipesXpag} recipes={recipe.length} funPagination={pagination} pag={pag} />
+                
             )}
 
             <div>
                 {error.length > 0 ? <p>Recipe not found</p> : 
 
-                    mostrarRecipes.length > 0 || recipeId.length > 0 ? mostrarRecipes.map(e=>(
-                        <div>
+                    mostrarRecipes.length > 0 || recipeId.length > 0 ? mostrarRecipes.map((e)=>(
+                        <div key={e.id}>
 
-                            <Recipes key={e.id} recipe={e}  />
-                            <Link to={"/detail"}>
 
-                                <button onClick={()=> handleBotonId(e.id)}>detalle</button>
+                            <Recipes key={e} recipe={e}  />
+                           
+
+                            <Link  to={"/detail"}>
+
+                                <button key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
                             </Link>
                             
                             <hr/>
@@ -158,36 +151,9 @@ const Home = ()=>{
 
             </div>
             
-            {/*
-            <div>
-
-                { recipeId.length >0 ? recipeId.map(e => <Recipe key={e.id} recipe={e}/>) : null}
-
-            </div>
-            */}
         </div>
         
     )
 };
 
 export default Home;
-
-
-//name={e.name} image={e.image} diets={e.diets} healthScore={e.healthScore}
-
-/*
-{mostrarRecipes.length > 0 ? mostrarRecipes.map(e=>(
-
-                    <Recipes key={e.id} recipe={e}  />
-
-                )) : <h1>cargando</h1>}
-*/
-
-
-
-/*
-
-<Recipes key={e.id} recipe={e}  />
-                            <button onClick={()=> handleBotonId(e.id)}>detalle</button>
-                            <hr/>
-*/

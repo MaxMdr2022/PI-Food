@@ -35,7 +35,8 @@ export default function rootReducer  (state= initialState, action){
                 error: "",
                 recipeByName:[],
                 recipeDiets:[],
-                // recipe: []
+                recipe:[]
+
             }
         case ERROR:
             return{
@@ -51,7 +52,8 @@ export default function rootReducer  (state= initialState, action){
                 ...state,
                 recipe: action.payload,
                 error: "",
-                // recipes: []
+                recipes:[]
+
             }
         case GET_DIETS:
             return{
@@ -80,13 +82,13 @@ export default function rootReducer  (state= initialState, action){
                 recipes: recipeFilterDiets,
                 error: err,
                 recipeDiets: dietfilter,
-                // d: dd
+
             } 
         case GET_RECIPE_BY_NAME:
 
                 const recipesName= action.payload;
                 const recdietas= state.recipeDiets;  //recipeDiets
-                const nombre = action.nombre; // ponerle nombre a param
+                const nombre = action.nombre; 
                 
     
                 
@@ -205,8 +207,9 @@ export default function rootReducer  (state= initialState, action){
 
                 ...state,
                 recipes: [],
-                recipe:[],
-                error: ""
+                // recipe:[],
+                error: "",
+                recipe:[]
             }    
         default:
             return{
@@ -217,13 +220,3 @@ export default function rootReducer  (state= initialState, action){
 
 };
 
-
-/*
-if(param.toLowerCase() === recdietas.find(e => e.name.toLowerCase().includes(param.toLowerCase()))){
-    
-                    return r =  recdietas.filter(e => e.name.toLowerCase().includes(param.toLowerCase())) 
-                    }else{
-                        r2 = "error2"
-                    }
-
-*/

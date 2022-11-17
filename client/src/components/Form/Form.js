@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiets, postRecipe } from "../../redux/action";
 import {useHistory} from "react-router-dom";
+import Navbar from "../NavBar/Navbar"
 
 const Form = () =>{
 
@@ -22,31 +23,26 @@ const Form = () =>{
 
     const [error, setError] = useState("");
 
+    const [stepAdd, setStepAdd] = useState([{step1:""}]);
+
+
+
+    useEffect(()=> {
+
+        setError(validate(input));
+
+        dispatch(getDiets());
+    
+    },[dispatch, input]);
+
+
+
     const handleChange = (e)=>{
 
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
-    };
-
-    const handleStep = (e) =>{
-
-        if(!e.target.value.length > 0){
-
-            setInput({
-
-                ...input,
-                step:[]
-            })
-        }else{
-
-            setInput({
-                ...input,
-                step:[e.target.value]
-            })
-        }
-        
     };
 
     const validate = (state)=>{
@@ -60,6 +56,10 @@ const Form = () =>{
             err.name = "El nombre no puede ser numerico";
         };
 
+        if(state.image && !/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(state.image)){
+            err.image = "URL invalida para imagen"
+        }
+
         if(!state.healthScore.length){
             err.healthScore = "Debe ingresar un valor de nivel de salud";
 
@@ -71,21 +71,26 @@ const Form = () =>{
         };
 
         if(!state.summary.length) err.summary = "Debe agregar un summay";
-        if(!state.step.length) err.step = "Debe agregar los pasos";
-        if(!state.diets.length > 0) err.diets = "Debe seleccionar al menos un tipo de dieta";
+       
+
+        if(!state.step.length > 0 || state.step == "" || state.step ==  " "){
+            err.step = "Debe agregar los pasos1";
+        
+        }else{
+
+            for (let i=0; i<=state.step.length; i++){
+
+                if(state.step[i] == "" || state.step[i] ==" "){
+
+                    err.step = "Debe agregar los pasos2";
+                }
+            }
+        }
+
+        if(!state.diets.length) err.diets = "Debe seleccionar al menos un tipo de dieta";
 
         return err;
     };
-
-    useEffect(()=> {
-
-        setError(validate(input));
-
-        dispatch(getDiets());
-    
-    },[dispatch, input]);
-
-
 
     const handleSubmit = (e)=>{
 
@@ -112,12 +117,14 @@ const Form = () =>{
         };
     };
 
-    const handleSelect = (e) => {
+    //------------diets---------------------
+
+    const handleSelectDiet = (e) => {
         // console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeee",e.target.value)
 
         let checkbox = document.getElementById(`${e.target.value}`);
 
-        console.log("cheeeeeeeeeeeeeeee",checkbox.checked)
+        // console.log("cheeeeeeeeeeeeeeee",checkbox.checked)
 
        
 
@@ -155,55 +162,56 @@ const Form = () =>{
        
     };
 
-    // console.log("dd", input.diets);
-
-    const [stepAdd, setStepAdd] = useState([])
-
-    const handleAdd = (e) =>{
+    //------------Step------------------
+    const handleAddStep = (e) =>{
         e.preventDefault();
-        const abc = [...stepAdd, []]
-        setStepAdd(abc)
+        setStepAdd([...stepAdd, {step1: ""}])
     };
 
-    const handleCambio = (e, i)=>{
+    const handleCambioStep = (e, i)=>{
 
-        const data = [...stepAdd]
 
-        data[i] = e.target.value
+        const {name, value} = e.target
 
-        setStepAdd(data)
-        
-        // input.step.push(data[i])
+        const list = [...stepAdd]
+
+        list[i][name] = value
+
+        setStepAdd(list)
+
+        const ar = stepAdd.map(el => el.step1)
         setInput({
 
             ...input,
-            step:[...input.step, [e.target.value] ]
+            step:[...ar ]
         })
     }
 
-    const handleDelete = (e,i) =>{
+    const handleDeleteStep = (e,i) =>{
         e.preventDefault();
+
         const deletStep = [...stepAdd]
         deletStep.splice(i,1)
         setStepAdd(deletStep)
 
-        const deletStepInput = [...input.step]
-        deletStepInput.splice(i, 1)
+        const ar = [...input.step]
+        ar.splice(i,1)
         setInput({
 
             ...input,
-            step:[...input.step, deletStepInput]
+            step:[...ar ]
         })
+  
     }
-    
+    //--------------------------------
 
 
-
- // mejorar las validaciones healthscore no puede ser string, y lo q pide el readme en validaciones, despues modular algunos componentes, ver lo del boton en el landingpage y creo q ya quedaria
-   
- // en el back ver el middlewaate etc...   onSubmit={(e) => handleSubmit(e)}
     return(
         <div>
+
+            <div>
+                <Navbar/>
+            </div>
 
             <h3>Crear receta</h3>
 
@@ -221,6 +229,7 @@ const Form = () =>{
 
                     <label>Imagen</label>
                     <input type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
+                    {error.image ? <span>URL invalida para imagen</span> : null}
                     
                 </div>
 
@@ -242,28 +251,34 @@ const Form = () =>{
                 <div>
 
                     <label>Step</label>
-                    <input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={input.step} onChange={(e)=> handleStep(e)} />
-                    <span><button hidden={input.step.length > 0 ? false : true} onClick={(e)=>handleAdd(e)}>Add Step</button></span>
                     
-                    {input.step.length > 0 ? stepAdd.map( (data, i) => 
-                        <div>
-                            <input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={data} onChange={ e =>handleCambio(e,i)}  />  
-                            <button onClick={(e)=> handleDelete(e,i)}>x</button>
+                    
+                    
+                     {stepAdd.map( (data, i ) => 
+                        <div key={i}>
+
+                            <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos3" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
+                            {stepAdd.length !== 1 && <button onClick={(e)=> handleDeleteStep(e,i)}>x</button>}
+                            { stepAdd.length -1 === i && <span><button  onClick={(e)=>handleAddStep(e)}>Add Step</button></span>}
+                            
                         </div>
 
-                    ): null }
+                    )}
                 </div>
 
                 <div>
+
                     <label>Diets</label>
 
                     { diets.map( e => 
                             
-                        <label><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelect(e)} />{e}</label>
+                        <label key={e}><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelectDiet(e)} />{e}</label>
                     
                     )}
                     <p>{error.diets && error.diets}</p>
                 </div>
+
+
 
                 <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
 
@@ -275,5 +290,3 @@ const Form = () =>{
 
 export default Form;
 
-
-//<input type={"text"} name={"step"} placeholder={`${error.step && error.step}`} value={input.step} onChange={(e)=> handleStep(e)} /> : null  

@@ -9,7 +9,6 @@ const Searchbar = ()=> {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
-    const [order, setOrder] = useState("");
 
     const handleInputName = (e)=>{
 
@@ -24,33 +23,21 @@ const Searchbar = ()=> {
             e.preventDefault();
             
             dispatch(getRecipeByName(name));
-            // setName("");
-            // dispatch()
             dispatch(getDiets())
-            setOrder(`ordenado `);
        
         }else{
             dispatch(getAllRecipes());
             dispatch(getDiets())
-            setOrder(`ordenado `);
 
         };  
         
-    };
-
-    const handleHome = ()=>{
-        
-        dispatch(getAllRecipes());
-        // dispatch(filterByDiets("Todos"));
-        // dispatch(getDiets());
-
     };
 
    
 
     return (
         <div>
-            <button onClick={()=> handleHome()}>Home</button>
+            
 
             <input type="text" placeholder="buscar.." onChange={(e)=> handleInputName(e)} />
 
@@ -62,21 +49,3 @@ const Searchbar = ()=> {
 
 export default Searchbar;
 
-
-/*
-onClick={(e)=> handleSubmit(e)}
-
-
-
-if(name.length > 0){
-
-            // e.preventDefault();
-            dispatch(getRecipeByName(name));
-            setName("");
-
-        }else{
-
-            dispatch(getAllRecipes())
-        }
-
-*/
