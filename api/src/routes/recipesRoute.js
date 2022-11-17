@@ -1,7 +1,6 @@
 const {Router} = require("express");
 const axios = require("axios");
 const {getRecipesApi,getRecipeByName, getRecipeById, createRecipeDB} = require("../controllers/controllers");
-const {Recipe, Diet} = require("../db");
 const {checkData} = require("../middlewares/middleware");
 
 
@@ -46,7 +45,7 @@ route.get("/:id", async (req,res)=> {
     };
 });
 
-route.post("/",  async (req,res) =>{
+route.post("/", checkData, async (req,res) =>{
 
     console.log(req.body)
 

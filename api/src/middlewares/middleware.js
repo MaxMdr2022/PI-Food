@@ -1,6 +1,6 @@
 const checkData = (req, res, next)=> {
 
-    const {name, summary, healthScore, step, image, diet} = req.body;
+    const {name, summary, healthScore, step, image, diets} = req.body;
 
     if(!name){
         
@@ -21,20 +21,19 @@ const checkData = (req, res, next)=> {
 
        return res.status(400).send("Debe ingresar el healthScore");
 
-    }
-    // else{
+    }else{
 
-    //     if(typeof healthScore != "number"){
+        if( healthScore != Number(healthScore)){
             
-    //         return res.status(400).send("healthScore debe ser un numero");
-    //     };
-    // };
+            return res.status(400).send("healthScore debe ser un numero");
+        };
+    };
 
     if(!step) return res.status(400).send("Debe ingresar los pasos");
 
     //if(!image) return res.status(400).send("Debe ingresar una imagen");
 
-    // if(!diet) return res.status(400).send("falta seleccionar dieta");
+    if(!diets) return res.status(400).send("falta seleccionar dieta");
 
     // console.log("name", name)
     // console.log("summary", summary)

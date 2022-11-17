@@ -78,7 +78,7 @@ const getRecipesApi = async () =>{
     return allRecipes;
 };
 
-const getRecipeByName = async(name) =>{  // en el fron en la action http:localhost:3001/recipes/?name=${name}
+const getRecipeByName = async(name) =>{  
 
     const allRecipes = await getRecipesApi();
 
@@ -219,10 +219,3 @@ module.exports ={
     createRecipeDB,
 };
 
-
-
-/*
-
-j: bcf02685b24e4b29a42f183b3ea38e72
-d: 9844f2ecb2b54419b4849beefb4f2a51
-*/ 
