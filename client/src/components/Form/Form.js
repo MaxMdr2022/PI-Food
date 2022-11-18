@@ -74,7 +74,7 @@ const Form = () =>{
        
 
         if(!state.step.length > 0 || state.step == "" || state.step ==  " "){
-            err.step = "Debe agregar los pasos1";
+            err.step = "Debe agregar los pasos";
         
         }else{
 
@@ -82,7 +82,7 @@ const Form = () =>{
 
                 if(state.step[i] == "" || state.step[i] ==" "){
 
-                    err.step = "Debe agregar los pasos2";
+                    err.step = "Debe agregar los pasos";
                 }
             }
         }
@@ -215,7 +215,7 @@ const Form = () =>{
 
             <h3>Crear receta</h3>
 
-            <form >
+            <form autoComplete="off">
 
                 <div>
 
@@ -257,7 +257,7 @@ const Form = () =>{
                      {stepAdd.map( (data, i ) => 
                         <div key={i}>
 
-                            <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos3" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
+                            <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
                             {stepAdd.length !== 1 && <button onClick={(e)=> handleDeleteStep(e,i)}>x</button>}
                             { stepAdd.length -1 === i && <span><button  onClick={(e)=>handleAddStep(e)}>Add Step</button></span>}
                             

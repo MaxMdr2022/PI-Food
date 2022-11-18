@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 
 
 
-const Navbar = ()=>{
+const NavBarHome = ()=>{
 
- 
+
 
     return(
         <div>
@@ -17,7 +17,8 @@ const Navbar = ()=>{
 
             <Link to={"/home"}>
 
-                <button >Home</button>
+                <button  type="button" onClick={() => window.location.reload()}>Home</button>
+               
 
             </Link>
 
@@ -29,4 +30,4 @@ const Navbar = ()=>{
     )
 };
 
-export default Navbar;
+export default NavBarHome;

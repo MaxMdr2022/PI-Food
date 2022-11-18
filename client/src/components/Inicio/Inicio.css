@@ -1,0 +1,135 @@
+.inicio {
+
+    position: absolute;
+    
+    background-image: url("../../components/Inicio/img/tabla.jpg");
+    background-size: cover; /*la imagen se estira */
+    height: 100%;
+    width: 100%;
+ 
+
+}
+
+.foco {
+
+    position: absolute;
+    height:100%;
+    width: 100%;
+
+    backdrop-filter: blur(7px);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+.titulo {
+ 
+    
+    display: grid;
+
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 50px;
+    border: 1px solid rgb(247, 247, 250);
+   
+    background-color: rgba(201, 156, 9, 0.379);
+    border-radius: 10px;
+   
+
+    color: rgb(255, 255, 255);
+    
+    font-size: larger;
+    font-weight: bolder;
+
+    font-style: italic;
+
+}
+
+h1{
+
+    -webkit-text-stroke: 2px black;
+    padding-bottom: 10px;
+}
+
+.contenedorBoton{
+
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
+
+.boton{
+
+    display:flex;/*inline le indica que hay mas elementos a la derecha y flex para trabajar con flex-box y poder darle ancho y alto*/
+    justify-content:center;/* alineamos al centro las letras (horizontal)*/
+    align-items: center; /*alineamos al centro las letras (vertical)*/
+    width: 100%;/*como arriba puse los botones en tres columnas iguales, pongo que el ancho sea del 100% de las columnas*/
+    height: 40px;/*alto de los botones*/
+    background-color: rgba(201, 156, 9, 0.067);/*color de los botones*/
+    color: rgb(255, 255, 255);/*color de la letra*/
+   
+   
+    /* font-family: sans-serif;el tipo de letra */
+    font-weight: bold;/* le damos mas ancho a las letras */
+    border: none;/*quitamos el borde que por defecto agregan los navegadores*/
+   cursor: pointer;/* esto hace que cuando pasemos el mouse por el boton muestre la manito*/
+    text-transform: uppercase;/* para que el texto de los botones sea en mayusculas */
+    font-style: italic;
+    font-size: 20px;
+
+    transition: .3s ease all;/*tiempo de la transicion  el efecto y se aplica en todas las propiedades*/
+    border-radius: 5px;/* borde redondo*/
+    padding: 0%;/* para que el boton no tenga margen interno*/
+    position: relative;/*para que la capa que creamos abajo ocupe solo el tamaño del boton*/
+    overflow: hidden;/*para que la capa que creamos abajo respete los bordes del boton, que en este caso son redondeados, y el sobrante lo recorte y no se vea*/
+    
+    }
+    .boton span {/*todos los span que esten dentro del boton*/
+
+        position: relative;/*para que la capa ocupe el tamaño del boton*/
+        z-index: 2;/*este va a a ser la capa visible, el de valor 1 va a a quedar "oculto", y lo que se va a ver va a ser el voton con el texto, el <span> va a quedar arriba de la capa*/
+        transition: .3s ease all;/*si mas adelante le agrego alguna animacion al span, ya tengo la transicion configurada*/
+    }
+
+.boton.home::after{
+
+    content: ""; /* para agregar el elemento en una cadena vacia*/
+    width: 100%;
+    padding: 0;
+
+    position:absolute; /*para sacar la capa de encima del boton*/
+    z-index: 1; /*para que el span que tinee z-index de 2 quede arriba de esta capa. y se vea el texto del boton*/
+    top: 0;
+    /*como la capa entra de izq a dere, tiene que estar corrida por fuera de la izq NOTA: si comento el overflow:hidden de .boton se hace visible la capa*/
+    /*el left estaba en -100% pero como queda la punta del triangulo tenemos que correr la capael pedazo ese de triangulo que esta sobre el boton */
+    /*cuanto la corremos?  con calc()  le digo que calcule -100% - 40px que es el largo de la capa, y me corre justo el pedazo de trianfgulo que estaba sobre el boton*/
+    left: calc(-100% - 40px);
+    
+    /*agregar la diagonal*/
+
+    border-bottom: 40px solid rgb(0, 0, 0);/* borde inferior de 40px (el tamaño del boton), color solido, y el color azul*/
+    border-right: 40px solid transparent;/*el borde derecho transparente y se forma un triangulo en el lado derecho*/
+
+    transition: .6s ease-in-out all;/*la velocidad que se va a correr la capa de izq a der.*/
+}
+
+/*ahora nos paramos sobre el boton y le indico que cuando tenga un hover, acceda al after*/
+
+.boton.home:hover::after {
+
+    left:0; /*cuando pasamos el cursor, la capa que estaba corrida hacia la izq -100%-40px, se mueve hacia la derecha*/
+}
+
+
+.link{
+
+    text-decoration: none;
+}

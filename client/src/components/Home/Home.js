@@ -5,7 +5,7 @@ import { getAllRecipes } from "../../redux/action";
 import Recipes from "../Recipes/Recipes";
 import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
-import Navbar from "../NavBar/Navbar"
+import NavBarHome from "../NavBarHome/NavBarHome"
 import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
 
 
@@ -44,6 +44,7 @@ const Home = ()=>{
 
         dispatch(getAllRecipes());
         dispatch(getDiets());
+        
 
     }, [dispatch]);
 
@@ -82,7 +83,7 @@ const Home = ()=>{
         <div>
 
             <div>
-                <Navbar/>
+                <NavBarHome/>
             </div>
 
             <div>
