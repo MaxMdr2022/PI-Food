@@ -47,7 +47,7 @@ route.get("/:id", async (req,res)=> {
 
 route.post("/", checkData, async (req,res) =>{
 
-    console.log(req.body)
+    // console.log(req.body)
 
     try {
 
