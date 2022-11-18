@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-
+import "./NavBarHome.css"
 
 
 const NavBarHome = ()=>{
@@ -8,7 +8,7 @@ const NavBarHome = ()=>{
 
 
     return(
-        <div>
+        <div className="botones">
 
             <Link to={"/"}>
 
@@ -22,10 +22,11 @@ const NavBarHome = ()=>{
 
             </Link>
 
-            <Link to={"/post"}>
+            
+            
 
-                <button>Form</button>
-            </Link>
+
+            
         </div>
     )
 };

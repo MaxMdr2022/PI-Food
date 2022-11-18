@@ -1,22 +1,45 @@
 import React from "react";
-
+import "../Recipes/Recipes.css"
 
 const Recipes =({recipe})=> {
 
     return (
-        <div>
+        <div className="recipes2">
 
-            <img height="200" alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
+            <div className="name">
+                <p>{recipe.name}</p>
+            </div>
 
-            <p>{recipe.name}</p>
-            <p>{recipe.healthScore}</p>
+            <div className="img">
+
+                <img height="200" alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
+            </div>
+         
             
-            { recipe.diets.length > 0 ? recipe.diets.map(e => 
+            
+            
 
-                <p key={e}>{e}</p>
+            <div className="puntaje">
 
-            ): null
-            }
+                <p>healthScore: {recipe.healthScore}</p>
+            </div>
+            
+            <div className="contenedorDiets">
+
+
+                <div className="diets">
+
+                    { recipe.diets.length > 0 ? recipe.diets.map(e => 
+
+                        <p key={e}>{e}</p>
+
+                    ): null
+                    }
+
+                </div>
+            </div>
+           
+            
 
             
 

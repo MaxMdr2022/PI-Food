@@ -7,6 +7,7 @@ import Pagination from "../Pagination/Pagination";
 import Searchbar from "../Searchbar/Searchbar";
 import NavBarHome from "../NavBarHome/NavBarHome"
 import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
+import "../Home/Home.css"
 
 
 const Home = ()=>{
@@ -82,67 +83,98 @@ const Home = ()=>{
     return (
         <div>
 
-            <div>
+            <div className="baner">
+
                 <NavBarHome/>
-            </div>
-
-            <div>
-                <Searchbar/>
-            </div>
-
-            <div>
-                
-
-                <select onChange={(e)=>handleFilterDiets(e)}>
-
-                <option value="Todo"  >Todo</option>
-
-                    {diets.map((e) =>
-
-                        <option key={e} value={e} >{e}</option>
-                    )}
-
-                </select>
-
-            </div>
-
-            <div>
-
-                <select  onChange={(e)=> handleOrder(e)} >
-                    <option>---Order---</option>
-                    <option value={"high health score"}>high health score</option>
-                    <option value={"low health score"}>low health score</option>
-                    <option value={"A-Z"}>A-Z</option>
-                    <option value={"Z-A"}>Z-A</option>
-                </select>
-
             
-             
+                <div className="searchBar">
+                <Searchbar/>
+                </div>
+
+                <div className="filters">
+
+
+                    <div className="filterDiets">
+                        
+
+                        <select onChange={(e)=>handleFilterDiets(e)}>
+
+                        <option value="Todo"  >Todo</option>
+
+                            {diets.map((e) =>
+
+                                <option key={e} value={e} >{e}</option>
+                            )}
+
+                        </select>
+
+                    </div>
+
+                    <div className="filterOrder">
+
+                        <select  onChange={(e)=> handleOrder(e)} >
+                            <option>---Order---</option>
+                            <option value={"high health score"}>high health score</option>
+                            <option value={"low health score"}>low health score</option>
+                            <option value={"A-Z"}>A-Z</option>
+                            <option value={"Z-A"}>Z-A</option>
+                        </select>
+
+                    
+                    
+                    </div>
+                </div>
+                
+                <div className="btnForm">
+
+                    <Link to={"/post"}>
+
+                        <button>Form</button>
+                    </Link>
+
+                </div>
+
             </div>
 
-            { !mostrarRecipes.length > 0 ? null : (
+
+
+            <div>
+
+                { !mostrarRecipes.length > 0 ? null : (
                 
                
-                <Pagination  cantidadReciXPag={cantRecipesXpag} recipes={recipe.length} funPagination={pagination} pag={pag} />
+                    <Pagination  cantidadReciXPag={cantRecipesXpag} recipes={recipe.length} funPagination={pagination} pag={pag} />
                 
-            )}
+                )}
 
-            <div>
+            </div>
+            
+
+            <div className="recipes">
+
                 {error.length > 0 ? <p>Recipe not found</p> : 
 
                     mostrarRecipes.length > 0 || recipeId.length > 0 ? mostrarRecipes.map((e)=>(
-                        <div key={e.id}>
+                        <div className="tarjeta" key={e.id}>
 
 
                             <Recipes key={e} recipe={e}  />
                            
+                            <div className="btnRecipes">
 
-                            <Link  to={"/detail"}>
+                                <div className="btnRecipes2">
 
-                                <button key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
-                            </Link>
+                                    <Link  to={"/detail"}>
+
+                                        <button className="btnDetalle" key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
+                                    </Link>
+                                </div>
+
+                                
+                            </div>
                             
-                            <hr/>
+                            
+                            
 
                         </div>
                         

@@ -1,0 +1,31 @@
+
+
+.recipes2{
+
+    display: grid;
+
+    grid-template-rows: auto auto auto auto ;
+    background-color: aquamarine;   
+}
+
+.img img{
+
+    width: 100%;
+    height: minmax(auto, 353.16);
+    border-radius: 7px;
+   
+}
+
+.diets{
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    border-top: 3px solid rgb(1, 1, 1);
+}
+
+.name{
+
+    background-color: rgba(0, 0, 255, 0.121);
+}

@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipeByName, getAllRecipes, getDiets } from "../../redux/action";
+import "./searchbar.css"
 
 const Searchbar = ()=> {
 
@@ -36,10 +37,10 @@ const Searchbar = ()=> {
    
 
     return (
-        <div>
+        <div className="searchBar">
             
 
-            <input type="text" placeholder="buscar.." onChange={(e)=> handleInputName(e)} />
+            <input className="input" type="text" placeholder="buscar.." onChange={(e)=> handleInputName(e)} />
 
             
             <button type="submit" onClick={(e)=> handleSubmit(e)}>Buscar</button>

@@ -1,0 +1,133 @@
+.baner{
+
+    background-image: url("https://img.freepik.com/fotos-premium/ingredientes-seleccion-alimentos-saludables-sobre-fondo-blanco-madera_35641-3003.jpg?w=1060");
+    padding: 10px;
+
+    display: grid;
+
+   height: 120px;
+
+    grid-template-columns: minmax(auto, 200px) 1fr minmax(auto, 200px);
+    grid-template-rows: 1fr 1fr;
+}
+
+.searchBar{
+
+    padding-bottom: 10px;
+}
+
+.filters{
+
+     grid-column-start: 2 ;
+    grid-column-end: 3;
+
+    grid-row-start: 2 ;
+    grid-row-end:3 ;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    align-items: flex-end;
+}
+
+.filterDiets {
+
+   color: aliceblue;
+   
+}
+
+.filterDiets select{
+
+    height: 30px;
+    width: 160px;
+}
+
+.filterOrder{
+
+   color: beige
+}
+
+.filterOrder select{
+
+    height: 30px;
+    width: 160px;
+}
+
+.btnForm{
+
+    grid-column-start: 3 ;
+    grid-column-end: 4;
+
+    grid-row-start: 1;
+    grid-row-end:2;
+
+    padding-right: 80px;
+}
+
+.btnForm button{
+
+    height: 40px;
+    width: 140px;
+
+}
+
+.recipes{
+
+    display: grid;
+
+    grid-template-columns: 400px 400px 400px;
+    grid-template-rows: auto auto auto;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    padding-top: 20px;
+
+    background-color: rgba(201, 156, 9, 0.184);
+    backdrop-filter: blur(80px);
+
+    justify-content: space-around;
+}
+
+
+.tarjeta{
+
+    display: flex;
+    flex-direction: column;
+
+
+    margin: 20px;
+    box-shadow: 5px 0px 20px grey, -5px 0px 20px gray;
+    border: 1px solid rgb(1, 0, 0);
+    border-radius: 7px;
+}
+
+.btnRecipes{
+
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-end;
+    height: 100% ;
+    background-color: aquamarine; 
+    padding-bottom: 5px;
+  
+}
+
+.btnDetalle{
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 40px;
+    width: 140px;
+
+    border-top: 3px solid black;
+}
+
+.btnRecipes2{
+
+    width: 100%;
+
+    border-top: 3px solid black;
+}

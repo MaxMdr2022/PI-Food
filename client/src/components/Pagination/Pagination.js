@@ -1,4 +1,5 @@
 import React from "react";
+import "../Pagination/Pagination.css"
 
 const Pagination = ({cantidadReciXPag, recipes, funPagination, pag}) => {
 
@@ -15,7 +16,7 @@ const Pagination = ({cantidadReciXPag, recipes, funPagination, pag}) => {
 
 
     return (
-        <div>
+        <div className="pagination">
 
             <button onClick={pag > 1 ? ()=> funPagination( pag - 1) : null} hidden={ pag === 1? true : false}>&lt;</button>
 

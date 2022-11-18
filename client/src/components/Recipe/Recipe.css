@@ -1,0 +1,27 @@
+.nav{
+
+    height: 120px;
+    background-color: aqua;
+}
+
+
+.recipe{
+
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+   
+}
+
+.recipe2{
+
+    width: 60%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 7px;
+}
+

@@ -11,7 +11,7 @@ const Inicio = ()=>{
 
                 
 
-                    <div className="titulo">
+                <div className="titulo">
 
                     <h1 >Proyecto Individual Food</h1>
 

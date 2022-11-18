@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import "../NavBar/NavBar.css";
 
 
 
@@ -8,7 +9,7 @@ const Navbar = ()=>{
  
 
     return(
-        <div>
+        <div className="nav2">
 
             <Link to={"/"}>
 

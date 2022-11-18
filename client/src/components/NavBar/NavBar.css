@@ -1,0 +1,15 @@
+.nav2 button{
+
+    height: 40px;
+    width: 140px;
+
+}
+
+.nav2{
+
+    display: flex;
+
+    padding-top: 10px;
+    justify-content: center;
+    gap: 50px;
+}
