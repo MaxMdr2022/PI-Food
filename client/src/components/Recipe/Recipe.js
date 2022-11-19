@@ -45,7 +45,7 @@ const Recipe = () => {
 
                                 <div className="dishType">
                                     <p>Dish Type</p>
-                                    { recipe.dishTypes? <p> {recipe.dishTypes}</p> : null}
+                                    { recipe.dishTypes? <p> {recipe.dishTypes}</p> : <p>None</p>}
                                 </div>
 
                                 <div className="healtScore">
@@ -86,7 +86,7 @@ const Recipe = () => {
                     </div>
                     
                     
-                    <div>
+                    <div className="preparation">
                         <p>Preparation: </p>
                             { recipe.step.length > 0 ? recipe.step.map((e, i) =>
                                         
@@ -110,7 +110,7 @@ const Recipe = () => {
 
             </div>
 
-            ) : <h1>cargando..</h1>}
+            ) : <div className="loading"><p>Cargando...</p></div>}
 
         </div>
     )

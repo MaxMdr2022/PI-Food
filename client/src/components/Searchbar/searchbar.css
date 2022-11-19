@@ -2,10 +2,28 @@
 
     width:  500px;
     height: 30px;
+
+    background-color: rgb(42, 42, 42);
+    color: white;
 }
 
 .searchBar button{
 
     width:  140px;
     height: 35px;
+
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;   
+}
+
+.searchBar button:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    border: 2px solid rgb(10, 10, 10);
 }

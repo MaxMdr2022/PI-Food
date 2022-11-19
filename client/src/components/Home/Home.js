@@ -81,7 +81,7 @@ const Home = ()=>{
     
 
     return (
-        <div>
+        <div className="cont">
 
             <div className="baner">
 
@@ -113,7 +113,7 @@ const Home = ()=>{
                     <div className="filterOrder">
 
                         <select  onChange={(e)=> handleOrder(e)} >
-                            <option>---Order---</option>
+                            <option>---- Order ----</option>
                             <option value={"high health score"}>high health score</option>
                             <option value={"low health score"}>low health score</option>
                             <option value={"A-Z"}>A-Z</option>
@@ -152,37 +152,42 @@ const Home = ()=>{
 
             <div className="recipes">
 
-                {error.length > 0 ? <p>Recipe not found</p> : 
-
-                    mostrarRecipes.length > 0 || recipeId.length > 0 ? mostrarRecipes.map((e)=>(
-                        <div className="tarjeta" key={e.id}>
 
 
-                            <Recipes key={e} recipe={e}  />
-                           
-                            <div className="btnRecipes">
+                    {error.length > 0 ? <div className="notFound"><p>Recipe Not Found</p></div> : 
 
-                                <div className="btnRecipes2">
+                        mostrarRecipes.length > 0  ? mostrarRecipes.map((e)=>(
+                            <div className="tarjeta" key={e.id}>
 
-                                    <Link  to={"/detail"}>
 
-                                        <button className="btnDetalle" key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
-                                    </Link>
+                                <Recipes key={e} recipe={e}  />
+                            
+                                <div className="btnRecipes">
+
+                                    <div className="btnRecipes2">
+
+                                        <Link  to={"/detail"}>
+
+                                            <button className="btnDetalle" key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
+                                        </Link>
+                                    </div>
+
+                                    
                                 </div>
-
                                 
+                                
+                                
+
                             </div>
                             
-                            
-                            
 
-                        </div>
-                        
-
-                    )) : <h1>cargando</h1>
-                }
-
+                        )) : <div className="loading"><p>Cargando...</p></div>
+                    }
             </div>
+
+                
+
+    
             
         </div>
         

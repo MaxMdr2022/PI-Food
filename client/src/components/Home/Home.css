@@ -1,15 +1,24 @@
+body{
+
+    background-image: url("../Home/img/wood.jpg");
+    background-size: cover;
+}
+
 .baner{
 
-    background-image: url("https://img.freepik.com/fotos-premium/ingredientes-seleccion-alimentos-saludables-sobre-fondo-blanco-madera_35641-3003.jpg?w=1060");
+    background-image: url("../Home/img/all-christmas-food_desktop.jpg");
     padding: 10px;
+    background-size: cover;
 
     display: grid;
 
    height: 120px;
+   
 
     grid-template-columns: minmax(auto, 200px) 1fr minmax(auto, 200px);
     grid-template-rows: 1fr 1fr;
 }
+
 
 .searchBar{
 
@@ -41,6 +50,13 @@
 
     height: 30px;
     width: 160px;
+
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: 17px;
+    font-style: italic;   
+    text-align: center;
 }
 
 .filterOrder{
@@ -52,7 +68,16 @@
 
     height: 30px;
     width: 160px;
+
+
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: 17px;
+    font-style: italic;   
+    text-align: center;
 }
+
 
 .btnForm{
 
@@ -62,7 +87,7 @@
     grid-row-start: 1;
     grid-row-end:2;
 
-    padding-right: 80px;
+    padding-right: 80px; 
 }
 
 .btnForm button{
@@ -70,6 +95,21 @@
     height: 40px;
     width: 140px;
 
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;   
+
+}
+
+.btnForm button:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    border: 2px solid rgb(10, 10, 10);
 }
 
 .recipes{
@@ -81,14 +121,20 @@
 
     padding-left: 10px;
     padding-right: 10px;
-
+    
     padding-top: 20px;
+
+    height: 100%;
+
+    background-image: url("../Home/img/wood.jpg");
+    background-size: cover;
 
     background-color: rgba(201, 156, 9, 0.184);
     backdrop-filter: blur(80px);
 
     justify-content: space-around;
 }
+
 
 
 .tarjeta{
@@ -99,7 +145,7 @@
 
     margin: 20px;
     box-shadow: 5px 0px 20px grey, -5px 0px 20px gray;
-    border: 1px solid rgb(1, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 7px;
 }
 
@@ -110,7 +156,7 @@
     justify-content: center;
     align-items: flex-end;
     height: 100% ;
-    background-color: aquamarine; 
+    background-color: rgba(201, 156, 9, 0.379); 
     padding-bottom: 5px;
   
 }
@@ -122,7 +168,20 @@
     height: 40px;
     width: 140px;
 
-    border-top: 3px solid black;
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.btnDetalle:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    border: 2px solid rgb(10, 10, 10);
 }
 
 .btnRecipes2{
@@ -130,4 +189,39 @@
     width: 100%;
 
     border-top: 3px solid black;
+}
+
+
+
+.loading{
+
+    display: flex;
+
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-style: italic;
+    font-size: x-large ;
+
+    grid-column: 2/3;
+
+}
+
+.notFound{
+
+    display: flex;
+
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-style: italic;
+    font-size: x-large ;
+
+    grid-column: 2/3;
 }

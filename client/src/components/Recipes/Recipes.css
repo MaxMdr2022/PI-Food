@@ -5,7 +5,7 @@
     display: grid;
 
     grid-template-rows: auto auto auto auto ;
-    background-color: aquamarine;   
+    background-color: rgba(201, 156, 9, 0.311);;   
 }
 
 .img img{
@@ -23,9 +23,51 @@
     grid-template-columns: 1fr 1fr 1fr;
 
     border-top: 3px solid rgb(1, 1, 1);
+
+    color: white;
+    
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .name{
 
     background-color: rgba(0, 0, 255, 0.121);
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
+
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.358);
+
+}
+
+/* .puntaje{
+
+    color: white;
+    
+    font-weight: bolder;
+    font-style: italic;
+    
+} */
+
+.saludable{
+
+    color: rgb(40, 255, 21);
+    
+    font-weight: bolder;
+    font-style: italic;
+    font-size: larger;
+
+}
+
+.pocoSaludable{
+
+    color: rgb(250, 9, 9);
+    
+    -webkit-text-stroke: 1px rgba(5, 4, 4, 0.192);
+
+    font-weight: bolder;
+    font-style: italic;
+    font-size: larger;
 }

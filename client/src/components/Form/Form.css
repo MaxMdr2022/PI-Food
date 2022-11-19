@@ -8,7 +8,9 @@
 .formCont2{
 
     display: block;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgba(201, 156, 9, 0.255); 
 
     height: 100%;
     width: 50%;
@@ -20,6 +22,10 @@
     grid-template-columns: auto auto auto;
     padding-top: 10px;
     
+    color: white;
+    /* font-size: larger; */
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .dietLabel{
@@ -41,7 +47,12 @@
     grid-column-start: 1;
     grid-column-end: 4;
     color: red;
+
+    font-size: large;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.43);
 }
+
+/*--------------------------------------*/
 
 .pasos{
 
@@ -49,13 +60,39 @@
     flex-direction: column;
     justify-content: flex-start;
 
-    
+    padding-bottom: 10px;
 }
+
+.pasos button{
+
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: medium;
+    /* font-weight: bolder; */
+    font-style: italic; 
+}
+
+.pasos button:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    border: 1px solid rgb(10, 10, 10);
+}
+
 
 .pasosLabel{
     display: flex;
     justify-content: flex-start;
     padding-left:10% ;
+
+    padding-bottom: 5px;
+
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .pasosLabel2{
@@ -64,15 +101,21 @@
     padding-left: 55px;
  
     left: 0;
+
 }
 
 .pasosLabel3{
 
-    color: black;
+    color: rgb(255, 255, 255);
     /* max-width: 500px; */
     width: 500px;
     left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(33, 31, 31);
 }
+
 
 /*---------------------------------------*/
 
@@ -82,6 +125,8 @@
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 55px;
+
+    padding-bottom: 10px;
 }
 
 .sumLabel{
@@ -89,6 +134,13 @@
     display: flex;
     justify-content: flex-start;
     padding-left:10px ;
+
+    padding-bottom: 5px;
+
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
    
 }
 
@@ -100,6 +152,13 @@
     height: auto;
     
     width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(33, 31, 31);
+    color: white;
 }
 
 /*--------------------------------------------*/
@@ -110,6 +169,8 @@
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 55px;
+
+    padding-bottom: 10px;
 }
 
 
@@ -118,6 +179,13 @@
     display: flex;
     justify-content: flex-start;
     padding-left:10px ;
+
+    padding-bottom: 5px;
+
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .nivelLabel2{
@@ -126,8 +194,42 @@
     justify-content: flex-start;
     
     height: auto;
-    
+
     width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+}
+
+.nivelLabel2Error input{
+
+    display: flex;
+    justify-content: flex-start;
+
+    width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(145, 58, 58);
+    color: white;
+}
+
+.nivelLabel2Error span{
+
+    color: rgb(75, 21, 21);
+
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: italic;
+
+    /* -webkit-text-stroke: 1px rgba(0, 0, 0, 0.645); */
+
 }
 
 /*------------------------------------------------*/
@@ -138,6 +240,8 @@
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 55px;
+
+    padding-bottom: 10px;
 }
 
 .imagenLabel{
@@ -145,6 +249,13 @@
     display: flex;
     justify-content: flex-start;
     padding-left:10px ;
+
+    padding-bottom: 5px;
+
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .imagenLabel2{
@@ -155,6 +266,37 @@
     height: auto;
     
     width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+}
+
+.imagenLabel2Error input{
+
+    display: flex;
+    justify-content: flex-start;
+
+    width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(145, 58, 58);
+    color: white;
+}
+
+.imagenLabel2Error span{
+
+    color: rgb(75, 21, 21);
+
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 /*---------------------------------------------*/
@@ -165,6 +307,8 @@
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 55px;
+
+    padding-bottom: 10px;
 }
 
 .nombreLabel{
@@ -172,17 +316,55 @@
     display: flex;
     justify-content: flex-start;
     padding-left:10px ;
+    padding-bottom: 5px;
+
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .nombreLabel2{
 
     display: flex;
     justify-content: flex-start;
-    
-    height: 30px;
-    
+
     width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(33, 31, 31);
+    color: white;
 }
+
+.nombreLabel2Error input{
+
+    display: flex;
+    justify-content: flex-start;
+
+    width: 500px;
+
+    left: 15px;
+
+    height: 20px;
+
+    background-color: rgb(145, 58, 58);
+    color: white;
+
+}
+
+.nombreLabel2Error span{
+
+    color: rgb(75, 21, 21);
+
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+
 
 /*----------------------------------------*/
 
@@ -190,4 +372,38 @@
 
     padding: 5px;
 
+}
+
+.btnFormulario button{
+
+    width:  140px;
+    height: 35px;
+
+    border: 1px solid rgb(255, 255, 255);
+
+    background-color: rgb(33, 31, 31);
+    color: white;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic; 
+}
+
+.btnFormulario button:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    border: 2px solid rgb(10, 10, 10);
+}
+
+
+/*----------------------------*/
+
+.formCont2 h3{
+
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    font-style: italic;
+
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.43);
 }

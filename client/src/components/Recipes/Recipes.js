@@ -15,13 +15,10 @@ const Recipes =({recipe})=> {
                 <img height="200" alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
             </div>
          
-            
-            
-            
 
             <div className="puntaje">
 
-                <p>healthScore: {recipe.healthScore}</p>
+                {recipe.healthScore > 40 ? <p className="saludable">healthScore: {recipe.healthScore}</p> : <p className="pocoSaludable">healthScore: {recipe.healthScore}</p> }
             </div>
             
             <div className="contenedorDiets">
@@ -39,10 +36,6 @@ const Recipes =({recipe})=> {
                 </div>
             </div>
            
-            
-
-            
-
         </div>
     )
 };

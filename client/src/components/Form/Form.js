@@ -226,25 +226,55 @@ const Form = () =>{
                         <div className="nombre">
 
                             <label className="nombreLabel">Nombre</label>
-                            <input className="nombreLabel2" type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
-                            {error.name === "El nombre no puede ser numerico" ? <span>El nombre no puede ser numerico</span> : null}
+
+                            {error.name === "El nombre no puede ser numerico" ?
+                          
+                                <div className="nombreLabel2Error">
+
+                                    <input  type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} /> 
+                                
+                                    <span>El nombre no puede ser numerico</span>
+                                </div>
+                             
+                            : <input className="nombreLabel2" type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />  }
 
                         </div>
 
                         <div className="imagen">
 
                             <label className="imagenLabel">Imagen</label>
-                            <input className="imagenLabel2" type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
-                            {error.image ? <span>URL invalida para imagen</span> : null}
+
+                            {error.image ?
+
+                                <div className="imagenLabel2Error">
+
+                                    <input  type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
+                                    <span>URL invalida para imagen</span>
+
+                                </div>
+
+                             : <input className="imagenLabel2" type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
+                            }
                             
                         </div>
 
                         <div className="nivel">
 
                             <label className="nivelLabel">healthScore</label>
-                            <input className="nivelLabel2" type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
-                            {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
-                            {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
+
+                            {error.healthScore === "El nivel de salud debe ser numerico" || error.healthScore === "Solo valores entre 0-100"  ? 
+                            
+                                <div className="nivelLabel2Error">
+
+                                    <input  type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
+                                    {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
+                                    {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
+                                
+                                </div>
+                                
+                                : <input className="nivelLabel2" type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
+                            }
+                            
                         </div>
 
                         <div className="sum">

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeByName, getAllRecipes, getDiets } from "../../redux/action";
+import { getRecipeByName, getAllRecipes, getDiets, restart } from "../../redux/action";
 import "./searchbar.css"
 
 const Searchbar = ()=> {
@@ -23,10 +23,16 @@ const Searchbar = ()=> {
         if(name.length > 0){
             e.preventDefault();
             
+            dispatch(restart())
+
+
             dispatch(getRecipeByName(name));
             dispatch(getDiets())
        
         }else{
+
+            dispatch(restart())
+
             dispatch(getAllRecipes());
             dispatch(getDiets())
 

@@ -1,11 +1,29 @@
+
+
 .pagination{
     padding-top: 5px;
-    background-color:  rgba(201, 156, 9, 0.184); ;
+    background-image: url("../Home/img/wood.jpg");
+    background-size: cover;
 }
 
 
 .pagination button{
 
-    
+    background-color: rgb(33, 31, 31);
+    color: white;
+    height: 25px;
+}
+
+.pagination button:hover{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
+    height: 25px;
+}
+
+.pagination button:focus{
+
+    background-color: white;
+    color: rgb(33, 31, 31);
     height: 25px;
 }
