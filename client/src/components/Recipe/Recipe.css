@@ -19,9 +19,105 @@
 
 .recipe2{
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 60%;
     padding: 10px;
     border: 2px solid black;
     border-radius: 7px;
 }
 
+.grilla{
+
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.grilla3{
+
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.name2{
+
+    border-bottom: 1px solid black;
+    padding-bottom: 50px;
+}
+
+.dishType{
+
+    display: flex;
+    flex-direction: column;
+
+    border-right: 1px solid black;
+    
+}
+
+.healtScore{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.diet{
+    display: flex;
+    flex-direction: column;
+
+    width: auto;
+    border-top: 1px solid black;
+    
+}
+
+
+
+.diets2{
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
+
+   
+}
+
+.summary{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    
+   border-top: 1px solid black;
+   border-bottom: 1px solid black;
+}
+
+.pStep{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 80px;
+}
+
+
+.contenedorImagen img{
+
+    border-radius: 7px;
+
+    max-height: 400px;
+    max-width: 500px;
+}
+
+.pStep2{
+
+    text-align: left;
+
+    padding-left: 100px;
+    padding-right: 30px;
+}
+
+.summary2{
+
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 20px;
+}

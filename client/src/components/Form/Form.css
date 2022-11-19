@@ -1,0 +1,14 @@
+.formCont{
+
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.formCont2{
+
+    border: 1px solid black;
+
+    height: 100%;
+    width: 90%;
+}

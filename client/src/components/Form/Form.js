@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDiets, postRecipe } from "../../redux/action";
 import {useHistory} from "react-router-dom";
 import Navbar from "../NavBar/Navbar"
+import "../Form/Form.css";
 
 const Form = () =>{
 
@@ -209,80 +210,89 @@ const Form = () =>{
     return(
         <div>
 
-            <div>
+            <div className="nav">
                 <Navbar/>
             </div>
 
-            <h3>Crear receta</h3>
+            <div className="formCont">
 
-            <form autoComplete="off">
+                <div className="formCont2">
 
-                <div>
 
-                    <label>Nombre</label>
-                    <input type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
-                    {error.name === "El nombre no puede ser numerico" ? <span>El nombre no puede ser numerico</span> : null}
+                    <h3>Crear receta</h3>
 
-                </div>
+                    <form autoComplete="off">
 
-                <div>
+                        <div>
 
-                    <label>Imagen</label>
-                    <input type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
-                    {error.image ? <span>URL invalida para imagen</span> : null}
-                    
-                </div>
+                            <label>Nombre</label>
+                            <input type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
+                            {error.name === "El nombre no puede ser numerico" ? <span>El nombre no puede ser numerico</span> : null}
 
-                <div>
+                        </div>
 
-                    <label>healthScore</label>
-                    <input type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
-                    {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
-                    {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
-                </div>
+                        <div>
 
-                <div>
-
-                    <label>Summary</label>
-                    <input type={"text"} name={"summary"} placeholder={`${error.summary && error.summary}`} value={input.summary} onChange={(e)=> handleChange(e)} />
-                    
-                </div>
-
-                <div>
-
-                    <label>Step</label>
-                    
-                    
-                    
-                     {stepAdd.map( (data, i ) => 
-                        <div key={i}>
-
-                            <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
-                            {stepAdd.length !== 1 && <button onClick={(e)=> handleDeleteStep(e,i)}>x</button>}
-                            { stepAdd.length -1 === i && <span><button  onClick={(e)=>handleAddStep(e)}>Add Step</button></span>}
+                            <label>Imagen</label>
+                            <input type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
+                            {error.image ? <span>URL invalida para imagen</span> : null}
                             
                         </div>
 
-                    )}
-                </div>
+                        <div>
 
-                <div>
+                            <label>healthScore</label>
+                            <input type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
+                            {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
+                            {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
+                        </div>
 
-                    <label>Diets</label>
+                        <div>
 
-                    { diets.map( e => 
+                            <label>Summary</label>
+                            <input type={"text"} name={"summary"} placeholder={`${error.summary && error.summary}`} value={input.summary} onChange={(e)=> handleChange(e)} />
                             
-                        <label key={e}><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelectDiet(e)} />{e}</label>
-                    
-                    )}
-                    <p>{error.diets && error.diets}</p>
+                        </div>
+
+                        <div>
+
+                            <label>Step</label>
+                            
+                            
+                            
+                            {stepAdd.map( (data, i ) => 
+                                <div key={i}>
+
+                                    <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
+                                    {stepAdd.length !== 1 && <button onClick={(e)=> handleDeleteStep(e,i)}>x</button>}
+                                    { stepAdd.length -1 === i && <span><button  onClick={(e)=>handleAddStep(e)}>Add Step</button></span>}
+                                    
+                                </div>
+
+                            )}
+                        </div>
+
+                        <div>
+
+                            <label>Diets</label>
+
+                            { diets.map( e => 
+                                    
+                                <label key={e}><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelectDiet(e)} />{e}</label>
+                            
+                            )}
+                            <p>{error.diets && error.diets}</p>
+                        </div>
+
+
+
+                        <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
+
+                    </form>
                 </div>
-
-
-
-                <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
-
-            </form>
+                
+            </div>
+            
         </div>
     )
 };

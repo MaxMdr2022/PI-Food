@@ -30,29 +30,29 @@ const Recipe = () => {
 
                         <div className="contenedorImagen">
 
-                            <img height="200" alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
+                            <img  alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
                         </div>
                         
                         <div className="grilla2">
 
 
-                            <div>
+                            <div className="name2">
 
                                 <p>Recipe Name: {recipe.name}</p>
                             </div>
                             
-                            <div>
+                            <div className="grilla3">
 
-                                <div>
-
-                                    { recipe.dishTypes? <p>Dish Type: {recipe.dishTypes}</p> : null}
+                                <div className="dishType">
+                                    <p>Dish Type</p>
+                                    { recipe.dishTypes? <p> {recipe.dishTypes}</p> : null}
                                 </div>
 
-                                <div>
-
-                                    <p>Healt Score:{recipe.healthScore}</p>
+                                <div className="healtScore">
+                                    <p>Healt Score</p>
+                                    <p>{recipe.healthScore}</p>
                                 </div>
-                                
+
                             </div>
                             
 
@@ -62,20 +62,26 @@ const Recipe = () => {
                     </div>
 
 
-                    <div>
+                    <div className="diet">
 
-                        <p>Diets:</p>
+                        <p>Diets</p>
+
+                        <div className="diets2">
+
                             { recipe.diets.length > 0 ? recipe.diets.map(e => 
 
-                                <p key={e}>{e}</p>
+                              <p key={e}>{e}</p>
 
-                           ): null
+                            ): null
 
-                          }
+                            }
+                        </div>
+                            
                     </div>
 
-                    <div>
-                        <p >Summary: {recipe.summary.replace(/<[^>]*>?/g, '')}</p>
+                    <div className="summary">
+                        <p>Summary</p>
+                        <p className="summary2"> {recipe.summary.replace(/<[^>]*>?/g, '')}</p>
 
                     </div>
                     
@@ -86,8 +92,8 @@ const Recipe = () => {
                                         
                             <div key={i}>
 
-                                <p>Step {i +1}:</p>
-                                <p>{e}</p>
+                                <p className="pStep">Step {i +1}:</p>
+                                <p className="pStep2">{e}</p>
 
                             </div>
                                         
