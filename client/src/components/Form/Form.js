@@ -223,47 +223,47 @@ const Form = () =>{
 
                     <form autoComplete="off">
 
-                        <div>
+                        <div className="nombre">
 
-                            <label>Nombre</label>
-                            <input type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
+                            <label className="nombreLabel">Nombre</label>
+                            <input className="nombreLabel2" type={"text"} name={"name"} placeholder={`${error.name && error.name}`} value={input.name} onChange={(e)=> handleChange(e)} />
                             {error.name === "El nombre no puede ser numerico" ? <span>El nombre no puede ser numerico</span> : null}
 
                         </div>
 
-                        <div>
+                        <div className="imagen">
 
-                            <label>Imagen</label>
-                            <input type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
+                            <label className="imagenLabel">Imagen</label>
+                            <input className="imagenLabel2" type={"text"} name={"image"} value={input.image} onChange={(e)=> handleChange(e)} />
                             {error.image ? <span>URL invalida para imagen</span> : null}
                             
                         </div>
 
-                        <div>
+                        <div className="nivel">
 
-                            <label>healthScore</label>
-                            <input type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
+                            <label className="nivelLabel">healthScore</label>
+                            <input className="nivelLabel2" type={"text"} name={"healthScore"} placeholder={`${error.healthScore && error.healthScore}`} value={input.healthScore} onChange={(e)=>handleChange(e)} />
                             {error.healthScore === "El nivel de salud debe ser numerico" ? <span>El nivel de salud debe ser numerico</span> : null}
                             {error.healthScore === "Solo valores entre 0-100" ? <span>Solo valores entre 0-100</span> : null}
                         </div>
 
-                        <div>
+                        <div className="sum">
 
-                            <label>Summary</label>
-                            <input type={"text"} name={"summary"} placeholder={`${error.summary && error.summary}`} value={input.summary} onChange={(e)=> handleChange(e)} />
+                            <label className="sumLabel">Summary</label>
+                            <input className="sumLabel2" type={"text"} name={"summary"} placeholder={`${error.summary && error.summary}`} value={input.summary} onChange={(e)=> handleChange(e)} />
                             
                         </div>
 
-                        <div>
+                        <div className="pasos">
 
-                            <label>Step</label>
+                            <label className="pasosLabel">Step</label>
                             
                             
                             
                             {stepAdd.map( (data, i ) => 
-                                <div key={i}>
+                                <div className="pasosLabel2" key={i}>
 
-                                    <span><input type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
+                                    <span><input className="pasosLabel3" type={"text"} name={"step1"} placeholder={ error.step == undefined ? "Debe agregar los pasos" : `${error.step && error.step}`} value={data.step1} onChange={ e =>handleCambioStep(e,i)}  /></span>  
                                     {stepAdd.length !== 1 && <button onClick={(e)=> handleDeleteStep(e,i)}>x</button>}
                                     { stepAdd.length -1 === i && <span><button  onClick={(e)=>handleAddStep(e)}>Add Step</button></span>}
                                     
@@ -272,22 +272,25 @@ const Form = () =>{
                             )}
                         </div>
 
-                        <div>
+                        <div className="dietas">
 
-                            <label>Diets</label>
+                            <label className="dietLabel">Diets</label>
 
                             { diets.map( e => 
                                     
-                                <label key={e}><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelectDiet(e)} />{e}</label>
+                                <label className="dietLabel2" key={e}><input type={"checkbox"} id={`${e}`} name={`diets`} value={e} onClick={(e)=> handleSelectDiet(e)} />{e}</label>
                             
                             )}
-                            <p>{error.diets && error.diets}</p>
+                            <p className="dietError">{error.diets && error.diets}</p>
                         </div>
 
+                        <div className="btnFormulario">
 
+                            <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
 
-                        <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
+                        </div>
 
+                        
                     </form>
                 </div>
                 

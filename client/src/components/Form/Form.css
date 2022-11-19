@@ -7,8 +7,187 @@
 
 .formCont2{
 
+    display: block;
     border: 1px solid black;
 
     height: 100%;
-    width: 90%;
+    width: 50%;
+}
+
+.dietas{
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-top: 10px;
+    
+}
+
+.dietLabel{
+
+    display: flex;
+    padding-left: 10%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.dietLabel2{
+
+    display: flex;
+    padding-left: 30%;
+}
+
+.dietError{
+
+    grid-column-start: 1;
+    grid-column-end: 4;
+    color: red;
+}
+
+.pasos{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    
+}
+
+.pasosLabel{
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10% ;
+}
+
+.pasosLabel2{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 55px;
+ 
+    left: 0;
+}
+
+.pasosLabel3{
+
+    color: black;
+    /* max-width: 500px; */
+    width: 500px;
+    left: 15px;
+}
+
+/*---------------------------------------*/
+
+.sum{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 55px;
+}
+
+.sumLabel{
+
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10px ;
+   
+}
+
+.sumLabel2{
+
+    display: flex;
+    justify-content: flex-start;
+    
+    height: auto;
+    
+    width: 500px;
+}
+
+/*--------------------------------------------*/
+
+.nivel{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 55px;
+}
+
+
+.nivelLabel{
+
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10px ;
+}
+
+.nivelLabel2{
+
+    display: flex;
+    justify-content: flex-start;
+    
+    height: auto;
+    
+    width: 500px;
+}
+
+/*------------------------------------------------*/
+
+.imagen{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 55px;
+}
+
+.imagenLabel{
+
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10px ;
+}
+
+.imagenLabel2{
+
+    display: flex;
+    justify-content: flex-start;
+    
+    height: auto;
+    
+    width: 500px;
+}
+
+/*---------------------------------------------*/
+
+.nombre{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 55px;
+}
+
+.nombreLabel{
+
+    display: flex;
+    justify-content: flex-start;
+    padding-left:10px ;
+}
+
+.nombreLabel2{
+
+    display: flex;
+    justify-content: flex-start;
+    
+    height: 30px;
+    
+    width: 500px;
+}
+
+/*----------------------------------------*/
+
+.btnFormulario{
+
+    padding: 5px;
+
 }
