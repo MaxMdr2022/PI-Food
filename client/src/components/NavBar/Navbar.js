@@ -13,7 +13,7 @@ const Navbar = ()=>{
 
             <Link to={"/"}>
 
-                <button>Inicio</button>
+                <button>Welcome</button>
             </Link>
 
             <Link to={"/home"}>
@@ -24,7 +24,7 @@ const Navbar = ()=>{
 
             <Link to={"/post"}>
 
-                <button>Form</button>
+                <button>New Recipe</button>
             </Link>
         </div>
     )

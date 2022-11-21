@@ -219,13 +219,13 @@ const Form = () =>{
                 <div className="formCont2">
 
 
-                    <h3>Crear receta</h3>
+                    <h3>Create Recipe</h3>
 
                     <form autoComplete="off">
 
                         <div className="nombre">
 
-                            <label className="nombreLabel">Nombre</label>
+                            <label className="nombreLabel">Name</label>
 
                             {error.name === "El nombre no puede ser numerico" ?
                           
@@ -242,7 +242,7 @@ const Form = () =>{
 
                         <div className="imagen">
 
-                            <label className="imagenLabel">Imagen</label>
+                            <label className="imagenLabel">Image</label>
 
                             {error.image ?
 
@@ -260,7 +260,7 @@ const Form = () =>{
 
                         <div className="nivel">
 
-                            <label className="nivelLabel">healthScore</label>
+                            <label className="nivelLabel">HealthScore</label>
 
                             {error.healthScore === "El nivel de salud debe ser numerico" || error.healthScore === "Solo valores entre 0-100"  ? 
                             
@@ -316,7 +316,7 @@ const Form = () =>{
 
                         <div className="btnFormulario">
 
-                            <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Crear</button>
+                            <button type="submit" hidden = {!Object.keys(error).length ? false : true} onClick={handleSubmit}>Create</button>
 
                         </div>
 

@@ -46,10 +46,10 @@ const Searchbar = ()=> {
         <div className="searchBar">
             
 
-            <input className="input" type="text" placeholder="buscar.." onChange={(e)=> handleInputName(e)} />
+            <input className="input" type="text" placeholder="search.." onChange={(e)=> handleInputName(e)} />
 
             
-            <button type="submit" onClick={(e)=> handleSubmit(e)}>Buscar</button>
+            <button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>
         </div>
     )
 };

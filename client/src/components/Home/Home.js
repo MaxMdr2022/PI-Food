@@ -99,7 +99,7 @@ const Home = ()=>{
 
                         <select onChange={(e)=>handleFilterDiets(e)}>
 
-                        <option value="Todo"  >Todo</option>
+                        <option value="Todo"  >Diets</option>
 
                             {diets.map((e) =>
 
@@ -129,7 +129,7 @@ const Home = ()=>{
 
                     <Link to={"/post"}>
 
-                        <button>Form</button>
+                        <button>New Recipe</button>
                     </Link>
 
                 </div>
@@ -168,7 +168,7 @@ const Home = ()=>{
 
                                         <Link  to={"/detail"}>
 
-                                            <button className="btnDetalle" key={e} onClick={()=> handleBotonId(e.id)}>detalle</button>
+                                            <button className="btnDetalle" key={e} onClick={()=> handleBotonId(e.id)}>Detail</button>
                                         </Link>
                                     </div>
 
@@ -181,7 +181,7 @@ const Home = ()=>{
                             </div>
                             
 
-                        )) : <div className="loading"><p>Cargando...</p></div>
+                        )) : <div className="loading"><p>Loading...</p></div>
                     }
             </div>
 

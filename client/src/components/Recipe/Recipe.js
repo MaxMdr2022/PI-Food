@@ -30,7 +30,7 @@ const Recipe = () => {
 
                         <div className="contenedorImagen">
 
-                            <img  alt={recipe.name} src= {recipe.image ? recipe.image : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"} />
+                            <img  alt={recipe.name} src= {recipe.image ? recipe.image : "https://media.istockphoto.com/id/1161153224/photo/vintage-cookbook-with-spices-and-herbs-on-rustic-wooden-background.jpg?s=612x612&w=0&k=20&c=5IEYo7Ad-OetMkhjBUJtkrcsAKX606EHYKbhjiUHNQo="} />
                         </div>
                         
                         <div className="grilla2">
@@ -110,7 +110,7 @@ const Recipe = () => {
 
             </div>
 
-            ) : <div className="loading"><p>Cargando...</p></div>}
+            ) : <div className="loading"><p>Loading...</p></div>}
 
         </div>
     )

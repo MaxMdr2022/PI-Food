@@ -12,7 +12,7 @@ const NavBarHome = ()=>{
 
             <Link to={"/"}>
 
-                <button>Inicio</button>
+                <button>Welcome</button>
             </Link>
 
             <Link to={"/home"}>
