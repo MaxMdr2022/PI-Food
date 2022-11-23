@@ -3,6 +3,7 @@ const axios = require("axios");
 const {getRecipesApi,getRecipeByName, getRecipeById, createRecipeDB} = require("../controllers/controllers");
 const {checkData} = require("../middlewares/middleware");
 
+const {Recipe} = require("../db")
 
 const route = Router();
 
@@ -62,7 +63,55 @@ route.post("/", checkData, async (req,res) =>{
     }
 });
 
+//-----------------------------------------------
 
+route.delete("/:id", async(req,res)=>{
+
+    try {
+
+        const {id} = req.params;
+
+        await Recipe.destroy({
+
+            where:{id:id}
+        })
+
+        res.status(200).send("recipe destruido")
+
+
+    } catch (error) {
+        
+        res.status(500).send(error.message)
+    }
+})
+
+route.put("/", (req,res)=>{
+
+    // try {
+        
+        const {id, name, summary, healthScore, diets} = req.body;
+
+         Recipe.update(
+            {   name: name,
+                summary: summary,
+                
+                healthScore: healthScore,
+               
+            },
+
+            {where:{id:id}}
+        ).then( resp => res.status(200).send("recipe modificado"))
+        .catch(err => res.status(500).send(err.message))
+
+        // res.status(200).send()
+
+    // } catch (error) {
+        
+    //     res.status(500).send(error.message)
+    // }
+})
+
+//----------------------------------------------
 module.exports = route;
 
 

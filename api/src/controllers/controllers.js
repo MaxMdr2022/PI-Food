@@ -42,7 +42,9 @@ const getRecipesApi = async () =>{
             summary: e.summary,
             dishTypes: e.dishTypes.map(e => e),
             step: e.analyzedInstructions[0]? e.analyzedInstructions[0].steps.map(e => e.step) : ["no hay pasos"],
-            diets: e.vegetarian? e.diets.map(e => e).concat("vegetarian") : e.diets.map(e => e)
+            diets: e.vegetarian? e.diets.map(e => e).concat("vegetarian") : e.diets.map(e => e),
+
+            createInDB:false
         }
     });
 
@@ -151,7 +153,9 @@ const getRecipeById = async (id) => {
             summary: e.data.summary,
             dishTypes: e.data.dishTypes.map(e => e),
             step: e.data.analyzedInstructions[0]? e.data.analyzedInstructions[0].steps.map(e => e.step) : ["no hay pasos"],
-            diets: e.data.vegetarian? e.data.diets.map(e => e).concat("vegetarian") : e.data.diets.map(e => e)
+            diets: e.data.vegetarian? e.data.diets.map(e => e).concat("vegetarian") : e.data.diets.map(e => e),
+
+            createInDB: false
         }
     });
 
