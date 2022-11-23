@@ -9,6 +9,8 @@ import NavBarHome from "../NavBarHome/NavBarHome"
 import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
 import "../Home/Home.css"
 
+import FiltroBD from "../filtroBD";
+
 
 const Home = ()=>{
 
@@ -16,7 +18,7 @@ const Home = ()=>{
     const dispatch = useDispatch();
     const recipe = useSelector(state => state.recipes);  // esto es lo mismo que hacer el mapStateToProps (vedio2 35:30)
     const error = useSelector(state => state.error);
-    const recipeId = useSelector(s => s.recipe);
+    // const recipeId = useSelector(s => s.recipe);
     const diets = useSelector(s => s.diets);
 
 
@@ -134,6 +136,8 @@ const Home = ()=>{
 
                 </div>
 
+                <FiltroBD/>
+
             </div>
 
 
@@ -157,6 +161,7 @@ const Home = ()=>{
                     {error.length > 0 ? <div className="notFound"><p>Recipe Not Found</p></div> : 
 
                         mostrarRecipes.length > 0  ? mostrarRecipes.map((e)=>(
+
                             <div className="tarjeta" key={e.id}>
 
 

@@ -2,7 +2,8 @@ import React from "react";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeByName, getAllRecipes, getDiets, restart } from "../../redux/action";
+import { Link } from "react-router-dom";
+import { getRecipeByName, getAllRecipes, getDiets, restart, getRecipeById } from "../../redux/action";
 import "./searchbar.css"
 
 const Searchbar = ()=> {
@@ -19,22 +20,29 @@ const Searchbar = ()=> {
 
     const handleSubmit= (e)=>{
 
-        
-        if(name.length > 0){
+        if(name == Number(name)){
+
             e.preventDefault();
+            console.log(Number(name))
+           return dispatch(getRecipeById(Number(name)))
+        }
+
+
+        if(name.length > 0){
             
-            dispatch(restart())
+            
+           
 
 
             dispatch(getRecipeByName(name));
-            dispatch(getDiets())
+           
        
         }else{
 
             dispatch(restart())
 
             dispatch(getAllRecipes());
-            dispatch(getDiets())
+         
 
         };  
         
@@ -48,11 +56,12 @@ const Searchbar = ()=> {
 
             <input className="input" type="text" placeholder="search.." onChange={(e)=> handleInputName(e)} />
 
-            
-            <button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>
+            { name == Number(name) ? <Link to={"/detail"}> <button onClick={(e)=> handleSubmit(e)}>Search</button></Link> :<button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>}
+                        
         </div>
     )
 };
 
 export default Searchbar;
 
+// sacar Likn dejar el button 

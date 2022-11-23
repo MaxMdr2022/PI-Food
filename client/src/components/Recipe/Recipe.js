@@ -2,14 +2,26 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../NavBar/Navbar";
 import "../Recipe/Recipe.css";
+//--------------------------
+import { deleteRecipe } from "../../redux/action";
+import { useDispatch } from "react-redux";
 
-
+import { Link } from "react-router-dom";
 
 const Recipe = () => {
 
  
     const recipeId = useSelector(s => s.recipe);
 
+    //-------------------------------------------------------------
+
+    const dispatch = useDispatch()
+
+    const handleDelete = (e) =>{
+
+        dispatch(deleteRecipe(e))
+
+    }
 
     return (
         <div >
@@ -104,9 +116,13 @@ const Recipe = () => {
                 </div>
 
                 
-                
-
-                
+                {/* boton delete y edit, hacer con un if. si e.createindb es true lo muestra sino no */}
+                {
+                    recipe.createInDB === true ? <button onClick={() => handleDelete(recipe.id)} >Delete</button> : null
+                }
+                {
+                    recipe.createInDB === true ? <div> <Link to={"/put"}> <button  >PUT</button></Link> </div>: null
+                }
 
             </div>
 
@@ -117,3 +133,5 @@ const Recipe = () => {
 };
 
 export default Recipe;
+
+

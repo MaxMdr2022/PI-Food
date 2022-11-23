@@ -21,32 +21,34 @@ export const POST_RECIPE = "POST_RECIPE";
 
 export const RESTART = "RESTART";
 
+//---------------------------------------------
+
+export const FILTRO_BD = "FILTRO_BD";
+
+export const DELETE_RECIPE = "DELETE_RECIPE";
+
 //-----------------------------------------------------------
 
 export const getAllRecipes = () =>{
 
-    return async function (dispatch){
+    return function (dispatch){
 
-        try {
+        
             
-            const axiosRespuesta = await axios.get("http://localhost:3001/recipes");
+        fetch("http://localhost:3001/recipes")
+        .then( res => res.json())
+        .then( data => dispatch ({
 
-            const recipes = axiosRespuesta.data;
+            type: GET_ALL_RECIPES,
+            payload: data
+        }))
+        .catch(err => dispatch({
 
-            dispatch({
+            type: ERROR,
+            payload: err.message
+        }))
 
-                type: GET_ALL_RECIPES,
-                payload: recipes
-            })
-
-        } catch (error) {
-            
-            dispatch({
-
-                type: ERROR,
-                payload: error.message
-            })
-        };
+        
     };
 };
 
@@ -185,3 +187,39 @@ export const restart = ()=>{
         type: RESTART
     }
 }
+
+//-------------------------------------------
+
+export const filterBD = (info) => {
+
+    return{
+
+        type: FILTRO_BD,
+        payload: info
+    }
+};
+
+export const deleteRecipe = (id) => {
+
+    return async function(dispatch){
+
+        try {
+            
+            const recipeDelete = await axios.delete("http://localhost:3001/recipes/" + id);
+
+            dispatch({
+
+                type:DELETE_RECIPE,
+                payload: recipeDelete.data
+            })
+
+        } catch (error) {
+            
+            dispatch({
+
+                type: ERROR,
+                payload: error.message
+            })
+        }
+    }
+};

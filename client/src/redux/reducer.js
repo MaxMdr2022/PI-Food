@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS, ORDER_BY_HEALTH_SCORE, ORDER_BY_NAME, POST_RECIPE, RESTART } from "./action";
+import { GET_ALL_RECIPES, ERROR, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID,GET_DIETS, FILTER_BY_DIETS, ORDER_BY_HEALTH_SCORE, ORDER_BY_NAME, POST_RECIPE, RESTART,      FILTRO_BD, DELETE_RECIPE } from "./action";
 
 const initialState = {
 
@@ -16,7 +16,11 @@ const initialState = {
 
     recipeDiets: [],
     
-    post: []
+    post: [],
+
+    //---------------
+    destroi: []
+   
 };
 
 
@@ -43,7 +47,7 @@ export default function rootReducer  (state= initialState, action){
 
                 ...state,
                 error: action.payload,
-                recipes:[]
+                // recipes:[]
             }    
         
         case GET_RECIPE_BY_ID:
@@ -60,7 +64,9 @@ export default function rootReducer  (state= initialState, action){
 
                 ...state,
                 diets: action.payload
-            }    
+            } 
+            
+            //------------------------------------------------------------------------------------------------
         case FILTER_BY_DIETS:
             
                 const allRecipes = state.allRecipes;
@@ -117,6 +123,7 @@ export default function rootReducer  (state= initialState, action){
                 // diets: []
     
             }
+            //--------------------------------------------------------------------------------------
         case ORDER_BY_HEALTH_SCORE:
             
             const value = action.payload;
@@ -207,10 +214,31 @@ export default function rootReducer  (state= initialState, action){
 
                 ...state,
                 recipes: [],
-                // recipe:[],
+             
                 error: "",
                 recipe:[]
             }    
+
+            //----------------------------------------------------
+        case FILTRO_BD:
+
+            
+            const recipebd = action.payload === "creado" ?  state.allRecipes.filter( e => e.createInDB === true) : state.allRecipes.filter(e => e.createInDB === false)
+            const e4 = !recipebd.length >0 ?  "error4" : "";
+
+            return{
+                ...state,
+                recipes: action.payload === "todos" ? state.allRecipes : recipebd,
+                error: e4
+            }
+        case DELETE_RECIPE:
+
+            return{
+
+                ...state,
+                destroi: action.payload
+            }
+            //------------------------------------------------------
         default:
             return{
                 ...state
@@ -220,3 +248,67 @@ export default function rootReducer  (state= initialState, action){
 
 };
 
+
+
+
+/*
+case FILTER_BY_DIETS:
+            
+                const allRecipes = state.allRecipes;
+                const recipeName = state.recipeByName;
+                
+                let recipeFilterDiets = [];
+                let dietfilter =[];
+
+                dietfilter= action.payload === "Todo" ? allRecipes : allRecipes.filter(e => e.diets.find(e => e === action.payload ));
+
+                !recipeName.length > 0 ?
+                   recipeFilterDiets  = action.payload === "Todo" ? allRecipes : allRecipes.filter(e => e.diets.find(e => e === action.payload )  ) :
+                   recipeFilterDiets  = action.payload === "Todo" ? recipeName : recipeName.filter(e => e.diets.find(e => e === action.payload )  )
+
+                const err = !recipeFilterDiets.length > 0 ? "error1" : ""; 
+            return{
+
+                ...state, 
+                recipes: recipeFilterDiets,
+                error: err,
+                recipeDiets: dietfilter,
+
+            } 
+        case GET_RECIPE_BY_NAME:
+
+                const recipesName= action.payload;
+                const recdietas= state.recipeDiets;  //recipeDiets
+                const nombre = action.nombre; 
+                
+    
+                
+                let r = []
+                let r2 = ""
+    
+                if(recdietas.length > 0){
+    
+                    r =  recdietas.filter(e => e.name.toLowerCase().includes(nombre.toLowerCase()))
+
+                    if(!r.length > 0){
+                        r2 = "error2"
+                    }
+                }else {
+    
+                    r = recipesName
+                }
+                
+                
+            return{
+    
+                ...state,
+                recipes: r,
+                error: r2,
+                recipeByName: action.payload,
+                // diets: []
+    
+            }
+
+
+
+*/
