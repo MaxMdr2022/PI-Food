@@ -14,8 +14,8 @@ const getDietsApiToDB = async () =>{
 
         if(!dietsBD.length){
 
-            const infoApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"); // API PIRATA
-            // const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+           const infoApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"); // API PIRATA
+            //  const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
             const dietsApi = infoApi.data.results.map((e) =>{
                 

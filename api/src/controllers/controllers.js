@@ -7,29 +7,39 @@ const {API_KEY} = process.env;
 const getDietsApi = async ()=>{
 
     
-    const infoApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"); // API PIRATA
-    // const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+    // //const infoApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5"); // API PIRATA
+    //  const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
-    const dietsApi = infoApi.data.results.map((e) =>{
+    // const dietsApi = infoApi.data.results.map((e) =>{
                 
-        return e.vegetarian? e.diets.map(e => e).concat("vegetarian") : e.diets.map(e => e)
+    //     return e.vegetarian? e.diets.map(e => e).concat("vegetarian") : e.diets.map(e => e)
             
-    });
+    // });
 
-    const filterDiets = new Set(dietsApi.flat());
+    // const filterDiets = new Set(dietsApi.flat());
+
+    // let arrDiets = [...filterDiets];
+
+    // // let mapDiets = arrDiets.map(e => {return {name: e}})
+
+    //-----------------------------------
+
+    const dietsBD = await Diet.findAll();
+
+    const filterDiets = new Set(dietsBD.flat());
 
     let arrDiets = [...filterDiets];
 
-    // let mapDiets = arrDiets.map(e => {return {name: e}})
+    let mapDiets = arrDiets.map(e => e.name);
 
-    return arrDiets;
+    return mapDiets;
 };
 
 const getRecipesApi = async () =>{
 
     const getApi = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5/information&number=100");  // API PIRATA
     
-    // const getApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`); //API OFICIAL
+    //  const getApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${API_KEY}&addRecipeInformation=true&number=100`); //API OFICIAL
 
     const recipesApi = getApi.data.results.map(e=> {
 
@@ -80,6 +90,9 @@ const getRecipesApi = async () =>{
     return allRecipes;
 };
 
+
+
+
 const getRecipeByName = async(name) =>{  
 
     const allRecipes = await getRecipesApi();
@@ -88,6 +101,9 @@ const getRecipeByName = async(name) =>{
 
     return allRecipesfilter;
 };
+
+
+
 
 const getRecipeById = async (id) => { 
 
@@ -163,6 +179,9 @@ const getRecipeById = async (id) => {
                 
 };
 
+
+
+
 const createRecipeDB = async (req) =>{
 
     const {name, summary, healthScore, step, image, diets} = req;
@@ -214,6 +233,8 @@ const createRecipeDB = async (req) =>{
     return recipe2;
 
 };
+
+
 
 module.exports ={
     getDietsApi,

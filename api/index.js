@@ -27,8 +27,8 @@ conn.sync({ force: true }).then(async() => {
 
   await getDietsApiToDB();   // cada vez que se levante el servidor va a ejecutar la funcion.
 
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(process.env.PORT, () => {
+    console.log(`%s listening at 3001 `); // eslint-disable-line no-console
   });
 
 });

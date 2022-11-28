@@ -30,6 +30,7 @@ route.get("/", async(req,res)=>{
     }
 });
 
+
 route.get("/:id", async (req,res)=> {
 
     try {                       //http://localhost:3001/recipes/12
@@ -63,55 +64,26 @@ route.post("/", checkData, async (req,res) =>{
     }
 });
 
-//-----------------------------------------------
 
-route.delete("/:id", async(req,res)=>{
+route.delete("/:id" ,async(req,res) =>{
 
     try {
 
         const {id} = req.params;
-
-        await Recipe.destroy({
-
-            where:{id:id}
+        
+        await Recipe.destroy( {
+            where: {id}
         })
 
-        res.status(200).send("recipe destruido")
-
+        res.status(200).send("recipe delete");
 
     } catch (error) {
         
-        res.status(500).send(error.message)
+        res.status(400).send(error.message)
     }
-})
 
-route.put("/", (req,res)=>{
+});
 
-    // try {
-        
-        const {id, name, summary, healthScore, diets} = req.body;
-
-         Recipe.update(
-            {   name: name,
-                summary: summary,
-                
-                healthScore: healthScore,
-               
-            },
-
-            {where:{id:id}}
-        ).then( resp => res.status(200).send("recipe modificado"))
-        .catch(err => res.status(500).send(err.message))
-
-        // res.status(200).send()
-
-    // } catch (error) {
-        
-    //     res.status(500).send(error.message)
-    // }
-})
-
-//----------------------------------------------
 module.exports = route;
 
 
