@@ -21,36 +21,55 @@ export const POST_RECIPE = "POST_RECIPE";
 
 export const RESTART = "RESTART";
 
-//---------------------------------------------
-
 export const FILTRO_BD = "FILTRO_BD";
-
-export const DELETE_RECIPE = "DELETE_RECIPE";
-
 //-----------------------------------------------------------
 
 export const getAllRecipes = () =>{
 
-    return function (dispatch){
+    return async function (dispatch){
 
         
             
-        fetch("http://localhost:3001/recipes")
-        .then( res => res.json())
-        .then( data => dispatch ({
+        // fetch("/recipes")  //"http://localhost:3001/recipes"
+        // .then( res => res.json())
+        // .then( data => dispatch ({
 
-            type: GET_ALL_RECIPES,
-            payload: data
-        }))
-        .catch(err => dispatch({
+        //     type: GET_ALL_RECIPES,
+        //     payload: data
+        // }))
+        // .catch(err => dispatch({
 
-            type: ERROR,
-            payload: err.message
-        }))
+        //     type: ERROR,
+        //     payload: err.message
+        // }))
+
+
+        try {
+            
+            const recipes = await axios.get("/recipes");
+
+            dispatch({
+
+                type: GET_ALL_RECIPES,
+                payload: recipes.data
+            })
+
+
+        } catch (error) {
+            
+            dispatch({
+
+                type: ERROR,
+                payload: error.message
+            })
+        }
 
         
     };
 };
+
+
+//-------------
 
 export const getRecipeByName = (name)=>{
 
@@ -58,7 +77,7 @@ export const getRecipeByName = (name)=>{
 
         try {
             
-            const getRecipe = await axios.get("http://localhost:3001/recipes/?name=" + name);
+            const getRecipe = await axios.get("/recipes/?name=" + name); //http://localhost:3001/recipes/?name=
 
             dispatch({
 
@@ -79,13 +98,16 @@ export const getRecipeByName = (name)=>{
     };
 };
 
+//--------------------
+
+
 export const getRecipeById = (id)=>{
 
     return async function(dispatch){
 
         try {
             
-            const recipe = await axios.get("http://localhost:3001/recipes/" + id);
+            const recipe = await axios.get("/recipes/" + id); //http://localhost:3001/recipes/
 
             dispatch({
 
@@ -104,13 +126,17 @@ export const getRecipeById = (id)=>{
     };
 };
 
+
+//----------------------
+
+
 export const getDiets = ()=>{
 
     return async function (dispatch){
 
         try {
             
-            const diets = await axios.get("http://localhost:3001/diets");
+            const diets = await axios.get("/diets"); //http://localhost:3001/diets
 
             dispatch({
 
@@ -129,6 +155,9 @@ export const getDiets = ()=>{
     };
 };
 
+
+//-------------------------------------
+
 export const filterByDiets = (d)=>{
 
     return {
@@ -138,6 +167,10 @@ export const filterByDiets = (d)=>{
     }
 };
 
+
+//---------------------------------------
+
+
 export const orderByHealthScore = (h) =>{
 
     return {
@@ -145,6 +178,9 @@ export const orderByHealthScore = (h) =>{
         payload: h
     }
 };
+
+
+//---------------------------------------
 
 export const orderByName = (n) =>{
 
@@ -154,14 +190,17 @@ export const orderByName = (n) =>{
     }
 };
 
+
+//-------------------------------------
+
 export const postRecipe = (data) =>{
 
-    console.log("dataaaaaaa",data)
+    // console.log("dataaaaaaa",data)
     return async function (dispatch){
 
         try {
             
-            const post = await axios.post("http://localhost:3001/recipes", data);
+            const post = await axios.post("/recipes", data); //http://localhost:3001/recipes
 
             dispatch({
 
@@ -180,6 +219,9 @@ export const postRecipe = (data) =>{
     };
 };
 
+
+//----------------------------------
+
 export const restart = ()=>{
 
     return {
@@ -196,30 +238,5 @@ export const filterBD = (info) => {
 
         type: FILTRO_BD,
         payload: info
-    }
-};
-
-export const deleteRecipe = (id) => {
-
-    return async function(dispatch){
-
-        try {
-            
-            const recipeDelete = await axios.delete("http://localhost:3001/recipes/" + id);
-
-            dispatch({
-
-                type:DELETE_RECIPE,
-                payload: recipeDelete.data
-            })
-
-        } catch (error) {
-            
-            dispatch({
-
-                type: ERROR,
-                payload: error.message
-            })
-        }
     }
 };

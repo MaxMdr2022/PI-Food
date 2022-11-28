@@ -30,7 +30,7 @@ const Recipes =({recipe})=> {
 
                         <p key={e}>{e}</p>
 
-                    ): null
+                    ): <p>No Diets</p>
                     }
 
                 </div>

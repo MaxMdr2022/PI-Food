@@ -8,8 +8,7 @@ import Form from "./components/Form/Form";
 import Recipe from "./components/Recipe/Recipe";
 
 
-//----------
-import { Put } from './components/modificar';
+
 
 function App() {
   return (
@@ -26,8 +25,6 @@ function App() {
           <Route path={"/home"} component={Home}/>
           <Route path={"/post"} component={Form}/>
           <Route path={"/detail"} component={Recipe} />
-
-          <Route path={"/put"} component={Put} />
 
         </Switch>
         

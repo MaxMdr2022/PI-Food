@@ -20,8 +20,8 @@ const Inicio = ()=>{
                       
                     <Link className="link" to ="/home">
                         
-                            <button className="boton home">
-                                <span>home</span>
+                            <button className="botonhome">
+                                <span>Home</span>
                             </button>
                                                 
                     </Link>

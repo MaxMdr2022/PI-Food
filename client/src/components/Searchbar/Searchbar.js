@@ -12,27 +12,20 @@ const Searchbar = ()=> {
 
     const [name, setName] = useState("");
 
+
+
     const handleInputName = (e)=>{
 
         e.preventDefault();
         setName(e.target.value);
     };
 
+
+    
     const handleSubmit= (e)=>{
-
-        if(name == Number(name)){
-
-            e.preventDefault();
-            console.log(Number(name))
-           return dispatch(getRecipeById(Number(name)))
-        }
 
 
         if(name.length > 0){
-            
-            
-           
-
 
             dispatch(getRecipeByName(name));
            
@@ -42,7 +35,6 @@ const Searchbar = ()=> {
             dispatch(restart())
 
             dispatch(getAllRecipes());
-         
 
         };  
         
@@ -56,7 +48,7 @@ const Searchbar = ()=> {
 
             <input className="input" type="text" placeholder="search.." onChange={(e)=> handleInputName(e)} />
 
-            { name == Number(name) ? <Link to={"/detail"}> <button onClick={(e)=> handleSubmit(e)}>Search</button></Link> :<button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>}
+            <button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>
                         
         </div>
     )
@@ -64,4 +56,3 @@ const Searchbar = ()=> {
 
 export default Searchbar;
 
-// sacar Likn dejar el button 

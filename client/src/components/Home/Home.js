@@ -8,15 +8,16 @@ import Searchbar from "../Searchbar/Searchbar";
 import NavBarHome from "../NavBarHome/NavBarHome"
 import { getRecipeById, getDiets, filterByDiets, orderByHealthScore, orderByName } from "../../redux/action";
 import "../Home/Home.css"
+import FiltroBD from "../FiltroBD/FiltroBD";
 
-import FiltroBD from "../filtroBD";
+import { filterBD } from "../../redux/action";
 
 
 const Home = ()=>{
 
 
     const dispatch = useDispatch();
-    const recipe = useSelector(state => state.recipes);  // esto es lo mismo que hacer el mapStateToProps (vedio2 35:30)
+    const recipe = useSelector(state => state.recipes);  
     const error = useSelector(state => state.error);
     // const recipeId = useSelector(s => s.recipe);
     const diets = useSelector(s => s.diets);
@@ -36,9 +37,13 @@ const Home = ()=>{
 
     const mostrarRecipes = recipe.slice(primeraReciEnPag, ultimaReciEnPag);
 
+    
+
     function pagination(numPag){
 
+    
         setPag(numPag);
+
     };
 
     //-----------------------------
@@ -55,13 +60,20 @@ const Home = ()=>{
     function handleBotonId (e) {
         // console.log("eeeeeeeeeeeeeeee", e)
         dispatch(getRecipeById(e))
+        
     };
+
 
     function handleFilterDiets (e){
 
         // console.log("eeeeeeeeeeee", e.target.value);
+
+        e.preventDefault();
         dispatch(filterByDiets(e.target.value));
+        setPag(1);
+        setOrder(`ordenado ${e.target.value}`);
     };
+
 
     function handleOrder (e){
 
@@ -80,6 +92,15 @@ const Home = ()=>{
         
     };
 
+    function handleChange (event){
+
+        // console.log("ccccc",event.target.value );
+
+        event.preventDefault();
+        dispatch(filterBD(event.target.value));
+        setPag(1);
+        setOrder(`ordenado ${event.target.value}`);
+    };
     
 
     return (
@@ -122,9 +143,10 @@ const Home = ()=>{
                             <option value={"Z-A"}>Z-A</option>
                         </select>
 
-                    
-                    
                     </div>
+
+                    <FiltroBD funcionHandle={handleChange}/>
+
                 </div>
                 
                 <div className="btnForm">
@@ -136,7 +158,6 @@ const Home = ()=>{
 
                 </div>
 
-                <FiltroBD/>
 
             </div>
 
@@ -144,7 +165,7 @@ const Home = ()=>{
 
             <div>
 
-                { !mostrarRecipes.length > 0 ? null : (
+               { !mostrarRecipes.length > 0 ? null : (
                 
                
                     <Pagination  cantidadReciXPag={cantRecipesXpag} recipes={recipe.length} funPagination={pagination} pag={pag} />
@@ -155,8 +176,6 @@ const Home = ()=>{
             
 
             <div className="recipes">
-
-
 
                     {error.length > 0 ? <div className="notFound"><p>Recipe Not Found</p></div> : 
 
@@ -179,10 +198,7 @@ const Home = ()=>{
 
                                     
                                 </div>
-                                
-                                
-                                
-
+                            
                             </div>
                             
 
