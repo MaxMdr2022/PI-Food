@@ -19,6 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+require('dotenv').config();
 
 const getDietsApiToDB = require("./src/helpers/getDietsApiToDB"); // traigo el helpers
 
@@ -28,7 +29,7 @@ conn.sync({ force: true }).then(async() => {
   await getDietsApiToDB();   // cada vez que se levante el servidor va a ejecutar la funcion.
 
   server.listen(process.env.PORT, () => {
-    console.log(`%s listening at 3001 `); // eslint-disable-line no-console
+    console.log(`%s listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
 
 });
