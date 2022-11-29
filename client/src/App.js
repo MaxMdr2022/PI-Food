@@ -7,7 +7,9 @@ import Form from "./components/Form/Form";
 
 import Recipe from "./components/Recipe/Recipe";
 
+import axios from "axios";
 
+axios.defaults.baseURL =  "http://localhost:3001"
 
 
 function App() {
