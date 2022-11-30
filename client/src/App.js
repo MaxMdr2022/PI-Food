@@ -9,8 +9,8 @@ import Recipe from "./components/Recipe/Recipe";
 
 import axios from "axios";
 
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 axios.defaults.baseURL = "https://pi-food-production-015d.up.railway.app/" //process.env.REACT_APP  || "http://localhost:3001";
 
