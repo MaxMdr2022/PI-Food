@@ -6,7 +6,8 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT} = process.env;
 
 const pg = require("pg");
 
-//--------------deploy---------------------------------------
+
+//--------------deploy--------------------------
 
 // let sequelize = process.env.NODE_ENV = "production" ? 
 
