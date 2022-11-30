@@ -9,7 +9,10 @@ import Recipe from "./components/Recipe/Recipe";
 
 import axios from "axios";
 
-axios.defaults.baseURL =  "http://localhost:3001"
+import dotenv from "dotenv";
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP  || "http://localhost:3001";
 
 
 function App() {

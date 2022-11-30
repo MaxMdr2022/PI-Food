@@ -30,7 +30,7 @@ export const getAllRecipes = () =>{
 
         
             
-        // fetch("/recipes")  //"http://localhost:3001/recipes"
+        // fetch("/recipes")  //"http://localhost:3001/recipes"        PARA LA CONFIG DE DEPLOY QUE TENGO NO PUEDO USAR FETCH
         // .then( res => res.json())
         // .then( data => dispatch ({
 
