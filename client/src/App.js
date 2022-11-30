@@ -12,7 +12,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP  || "http://localhost:3001";
+axios.defaults.baseURL = "https://pi-food-production-015d.up.railway.app/" //process.env.REACT_APP  || "http://localhost:3001";
 
 
 function App() {
